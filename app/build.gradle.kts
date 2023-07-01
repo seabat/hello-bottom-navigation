@@ -1,9 +1,10 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin)
     id("androidx.navigation.safeargs")
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -44,26 +45,23 @@ android {
 dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.com.google.android.material)
+    implementation(libs.androidx.constraintlayout)
 
     // Navigation
-    val navVersion = "2.5.3"
-    implementation("androidx.navigation:navigation-fragment-ktx:${navVersion}")
-    implementation("androidx.navigation:navigation-ui-ktx:${navVersion}")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // Hilt
-    val hiltVersion = "2.44"
-    implementation("com.google.dagger:hilt-android:${hiltVersion}")
-    kapt("com.google.dagger:hilt-compiler:${hiltVersion}")
+    implementation(libs.com.google.dagger.hilt.android)
+    kapt(libs.com.google.dagger.hilt.compiler)
 
     // Glide
-    val glideVersion = "4.15.1"
-    implementation("com.github.bumptech.glide:glide:${glideVersion}")
+    implementation(libs.com.github.bumptech.glide)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
 }

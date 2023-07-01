@@ -1,6 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin)
 }
 
 android {
@@ -32,19 +33,17 @@ android {
 
 dependencies {
     implementation(project(":domain"))
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.com.google.android.material)
 
     // Retrofit
-    val retrofitVersion = "2.9.0"
-    implementation("com.squareup.retrofit2:retrofit:${retrofitVersion}")
+    implementation(libs.com.squareup.retrofit2)
 
     // Gson
-    val gsonVersion = "2.9.0"
-    implementation("com.squareup.retrofit2:converter-gson:${gsonVersion}")
+    implementation(libs.com.squareup.retrofit2.converter.gson)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
 }

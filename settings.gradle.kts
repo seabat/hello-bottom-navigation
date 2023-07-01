@@ -16,3 +16,5 @@ rootProject.name = "Hello Bottom Navigation"
 include(":app")
 include(":domain")
 include(":data")
+
+enableFeaturePreview("VERSION_CATALOGS")
