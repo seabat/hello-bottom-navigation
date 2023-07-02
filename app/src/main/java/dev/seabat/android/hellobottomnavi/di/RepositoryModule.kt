@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.seabat.android.hellobottomnavi.data.datasource.github.GithubApiEndpoint
+import dev.seabat.android.hellobottomnavi.data.datasource.github.GithubApiService
 import dev.seabat.android.hellobottomnavi.data.repository.GithubRepository
 import dev.seabat.android.hellobottomnavi.domain.repository.GithubRepositoryContract
 import javax.inject.Singleton
@@ -25,7 +25,7 @@ abstract class RepositoryModuleBinder {
 object RepositoryModuleProvider {
     @Provides
     fun provideGithubRepository(
-        endpoint: GithubApiEndpoint
+        endpoint: GithubApiService
     ): GithubRepository {
         return GithubRepository(endpoint)
     }

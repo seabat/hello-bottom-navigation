@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_root"
-    app:startDestination="@id/top">
-    <fragment
-        android:id="@+id/top"
-        android:name="dev.seabat.android.hellobottomnavi.ui.pages.TopFragment"
-        android:label="@string/top_title"
-        tools:layout="@layout/page_top" >
-    </fragment>
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_root"
+app:startDestination="@id/nav_top">
+
+<!-- トップ画面 -->
+<fragment
+    android:id="@+id/nav_top"
+    android:name="dev.seabat.android.hellobottomnavi.ui.pages.top.TopFragment"
+    android:label="@string/top_title"
+    tools:layout="@layout/page_top">
+    <action
+        android:id="@+id/action_to_repo_detail"
+        app:destination="@id/nav_repo_detail">
+        <argument
+            android:name="repoUrl"
+            app:argType="string"
+            android:defaultValue="https://github.com/" />
+        <argument
+            android:name="repoName"
+            app:argType="string"
+            android:defaultValue="GitHub" />
+    </action>
+</fragment>
+
+<!-- リポジトリ詳細画面 -->
+<fragment
+    android:id="@+id/nav_repo_detail"
+    android:name="dev.seabat.android.hellobottomnavi.ui.pages.repodetail.RepoDetailFragment"
+    android:label="@string/repo_detail_title"
+    tools:layout="@layout/page_repo_detail">
+    <argument
+        android:name="repoUrl"
+        app:argType="string"
+        android:defaultValue="https://github.com/" />
+    <argument
+        android:name="repoName"
+        app:argType="string"
+        android:defaultValue="GitHub" />
+</fragment>
 </navigation>

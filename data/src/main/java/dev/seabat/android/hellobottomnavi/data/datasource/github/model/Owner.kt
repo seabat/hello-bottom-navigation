@@ -1,3 +1,6 @@
 package dev.seabat.android.hellobottomnavi.data.datasource.github.model
 
-data class Owner(val avatar_url: String?)
+import com.squareup.moshi.Json
+data class Owner(
+    @Json(name = "avatar_url") val avatarUrl: String?
+)

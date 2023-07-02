@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GithubApiEndpoint {
+interface GithubApiService {
     @GET("search/repositories")
     fun getAllRepo(@Query("q") q : String): Call<GetAllRepoResponse>
 }

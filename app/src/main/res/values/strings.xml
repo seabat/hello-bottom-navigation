@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Hello Bottom Navigation</string>
+
+    <!-- トップページ -->
     <string name="top_title">Top Page</string>
+
+    <!-- リポジトリ詳細ページ -->
+    <string name="repo_detail_title">Repository Detail Page</string>
+
+    <!-- 共通 -->
     <string name="error_network_connection">インターネット接続に失敗しました。インターネット接続状態を確認してください。</string>
     <string name="error_network_connecting">インターネット接続中にエラーが発生しました。インターネット接続状態を確認してください。</string>
     <string name="error_network_bad_request">サーバーに送信するデータが不正です。再度やり直してください。</string>

@@ -1,4 +1,4 @@
-package dev.seabat.android.hellobottomnavi.ui.pages
+package dev.seabat.android.hellobottomnavi.ui.pages.top
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +9,12 @@ import dev.seabat.android.hellobottomnavi.databinding.ListitemGithubRepoBinding
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryEntity
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryListEntity
 
-class RepositoryListAdapter : RecyclerView.Adapter<RepositoryListAdapter.RepositoryHolder>(){
+class RepositoryListAdapter(
+    private val onListItemClick: (fullName: String, htmlUrl: String) -> Unit
+) : RecyclerView.Adapter<RepositoryListAdapter.RepositoryHolder>() {
     var items = RepositoryListEntity(arrayListOf())
 
-    fun updateRepositoryList(repositoryList : RepositoryListEntity){
+    fun updateRepositoryList(repositoryList: RepositoryListEntity) {
         this.items = repositoryList
         this.notifyDataSetChanged()
     }
@@ -29,21 +31,32 @@ class RepositoryListAdapter : RecyclerView.Adapter<RepositoryListAdapter.Reposit
 
     override fun onBindViewHolder(holder: RepositoryHolder, position: Int) {
         holder.bind(items[position])
+        holder.setClickListener(items[position], onListItemClick)
     }
 
-    class RepositoryHolder(val binding: ListitemGithubRepoBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(data: RepositoryEntity){
+    class RepositoryHolder(val binding: ListitemGithubRepoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: RepositoryEntity) {
             binding.textName.text = data.name
             binding.textDesc.text = data.description ?: ""
-            binding.textCreatedDate.text = data.created_at
-            
+            binding.textCreatedDate.text = data.createdAt
+
             Glide.with(binding.imageThubm)
-                .load(data.owner.avatar_url)
+                .load(data.owner.avatarUrl)
                 .circleCrop()
                 .placeholder(R.mipmap.ic_launcher_foreground)
                 .error(R.mipmap.ic_launcher_foreground)
                 .fallback(R.mipmap.ic_launcher_foreground)
                 .into(binding.imageThubm)
+        }
+
+        fun setClickListener(
+            data: RepositoryEntity,
+            onListItemClick: (fullName: String, htmlUrl: String) -> Unit
+        ) {
+            binding.layoutRoot.setOnClickListener {
+                onListItemClick(data.fullName, data.htmlUrl)
+            }
         }
     }
 }

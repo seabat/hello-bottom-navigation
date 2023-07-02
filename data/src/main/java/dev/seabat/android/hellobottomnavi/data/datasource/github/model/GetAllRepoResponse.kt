@@ -10,4 +10,4 @@ package dev.seabat.android.hellobottomnavi.data.datasource.github.model
  *   "items": [...]
  * }
  */
-data class GetAllRepoResponse(val items: ArrayList<Repository>)
+data class GetAllRepoResponse(val items: List<Repository>)

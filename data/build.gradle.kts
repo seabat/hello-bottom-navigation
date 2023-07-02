@@ -37,11 +37,11 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.com.google.android.material)
 
-    // Retrofit
-    implementation(libs.com.squareup.retrofit2)
+    // Retrofit with Moshi Converter
+    implementation (libs.com.squareup.retrofit2.converter.moshi)
 
-    // Gson
-    implementation(libs.com.squareup.retrofit2.converter.gson)
+    // Moshi
+    implementation(libs.com.squareup.moshi.kotlin)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
