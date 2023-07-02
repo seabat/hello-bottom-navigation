@@ -2,8 +2,8 @@ package dev.seabat.android.hellobottomnavi.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
@@ -22,5 +22,11 @@ class MainActivity : AppCompatActivity() {
         // NOTE: val navController = findNavController(R.id.nav_host_fragment) はダメ
 
         setupWithNavController(bottomNav, fragment.navController)
+        // NOTE: setOnItemSelectedListener の上書きは BottomNavigationView#setupWithNavController
+        //       の後に実行する。
+        bottomNav.setOnItemSelectedListener { item ->
+            NavigationUI.onNavDestinationSelected(item, fragment.navController)
+            true
+        }
     }
 }
