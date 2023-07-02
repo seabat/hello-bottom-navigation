@@ -40,4 +40,12 @@ app:startDestination="@id/nav_top">
         app:argType="string"
         android:defaultValue="GitHub" />
 </fragment>
+
+    <!-- Qiita 画面 -->
+    <fragment
+        android:id="@+id/nav_qiita"
+        android:name="dev.seabat.android.hellobottomnavi.ui.pages.qiita.QiitaFragment"
+        android:label="@string/qiita_title"
+        tools:layout="@layout/page_qiita">
+    </fragment>
 </navigation>

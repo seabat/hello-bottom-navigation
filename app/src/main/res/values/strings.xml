@@ -7,6 +7,9 @@
     <!-- リポジトリ詳細ページ -->
     <string name="repo_detail_title">Repository Detail Page</string>
 
+    <!-- Qiitaページ -->
+    <string name="qiita_title">Qiita Page</string>
+
     <!-- 共通 -->
     <string name="error_network_connection">インターネット接続に失敗しました。インターネット接続状態を確認してください。</string>
     <string name="error_network_connecting">インターネット接続中にエラーが発生しました。インターネット接続状態を確認してください。</string>

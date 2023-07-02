@@ -2,13 +2,25 @@ package dev.seabat.android.hellobottomnavi.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
+import dev.seabat.android.hellobottomnavi.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val bottomNav = binding.bottomNav
+        val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        // NOTE: val navController = findNavController(R.id.nav_host_fragment) はダメ
+
+        setupWithNavController(bottomNav, fragment.navController)
     }
 }
