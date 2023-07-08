@@ -64,6 +64,7 @@ class TopFragment : Fragment(R.layout.page_top) {
         viewModel.repositories.observe(viewLifecycleOwner) {
             (binding?.recyclerview?.adapter as RepositoryListAdapter)?.updateRepositoryList(it)
         }
+
         viewModel.progressVisible.observe(viewLifecycleOwner) {
             if(it) {
                 binding?.progressbar?.visibility = View.VISIBLE
@@ -71,6 +72,7 @@ class TopFragment : Fragment(R.layout.page_top) {
                 binding?.progressbar?.visibility = View.GONE
             }
         }
+
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             if(it != null) {
                 showSimpleErrorDialog(

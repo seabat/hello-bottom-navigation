@@ -6,8 +6,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.seabat.android.hellobottomnavi.data.datasource.github.GithubApiService
+import dev.seabat.android.hellobottomnavi.data.datasource.qiita.QiitaApiService
 import dev.seabat.android.hellobottomnavi.data.repository.GithubRepository
+import dev.seabat.android.hellobottomnavi.data.repository.QiitaArticlesRepository
 import dev.seabat.android.hellobottomnavi.domain.repository.GithubRepositoryContract
+import dev.seabat.android.hellobottomnavi.domain.repository.QiitaArticlesRepositoryContract
 import javax.inject.Singleton
 
 @Module
@@ -18,6 +21,12 @@ abstract class RepositoryModuleBinder {
     abstract fun bindGithubRepositoryContract(
         gitHubRepository: GithubRepository
     ): GithubRepositoryContract
+
+    @Binds
+    @Singleton
+    abstract fun provideQiitaArticlesRepositoryContract(
+        qiitaArticlesRepository: QiitaArticlesRepository
+    ): QiitaArticlesRepositoryContract
 }
 
 @Module
@@ -28,6 +37,13 @@ object RepositoryModuleProvider {
         endpoint: GithubApiService
     ): GithubRepository {
         return GithubRepository(endpoint)
+    }
+
+    @Provides
+    fun provideQiitaArticlesRepository(
+        endpoint: QiitaApiService
+    ): QiitaArticlesRepository {
+        return QiitaArticlesRepository(endpoint)
     }
 }
 

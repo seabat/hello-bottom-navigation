@@ -6,6 +6,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.seabat.android.hellobottomnavi.domain.repository.GithubRepositoryContract
+import dev.seabat.android.hellobottomnavi.domain.repository.QiitaArticlesRepositoryContract
+import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCase
+import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCaseContract
 import dev.seabat.android.hellobottomnavi.domain.usecase.GithubUseCase
 import dev.seabat.android.hellobottomnavi.domain.usecase.GithubUseCaseContract
 import javax.inject.Singleton
@@ -18,6 +21,12 @@ abstract class UseCaseModuleBinder {
     abstract fun bindGithubUseCaseContract(
         githubUseCase: GithubUseCase
     ): GithubUseCaseContract
+
+    @Binds
+    @Singleton
+    abstract fun bindFetchQiitaArticlesUseCaseContract(
+        fetchQiitaArticlesUseCase: FetchQiitaArticlesUseCase
+    ): FetchQiitaArticlesUseCaseContract
 }
 
 
@@ -29,5 +38,12 @@ object UseCaseModuleProvider {
         githubRepository: GithubRepositoryContract
     ): GithubUseCase {
         return GithubUseCase(githubRepository)
+    }
+
+    @Provides
+    fun provideFetchQiitaArticlesUseCase(
+        qiitaArticlesRepository: QiitaArticlesRepositoryContract
+    ): FetchQiitaArticlesUseCase {
+        return FetchQiitaArticlesUseCase(qiitaArticlesRepository)
     }
 }
