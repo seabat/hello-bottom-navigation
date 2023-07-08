@@ -18,5 +18,6 @@
     <string name="error_network_forbidden">アクセス権限がありません。</string>
     <string name="error_network_not_found">アクセス先が見つかりません。</string>
     <string name="error_network_unknown">通信中に不明なエラーが発生しました。</string>
+    <string name="error_network_internal_server">サーバー側で何かしらのエラーが発生しました。</string>
     <string name="error_unknown">不明なエラーが発生しました。</string>
 </resources>
