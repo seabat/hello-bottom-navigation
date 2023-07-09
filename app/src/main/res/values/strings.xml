@@ -13,6 +13,11 @@
 
     <!-- Qiita 検索ページ -->
     <string name="qiita_search_title">Qiita Search Page</string>
+    <string name="qiita_search_description">記事を検索する期間を指定してください。</string>
+    <string name="qiita_search_start_date">開始日</string>
+    <string name="qiita_search_end_date">終了日</string>
+    <string name="qiita_search_search">検索</string>
+
 
     <!-- Qiita 詳細ページ -->
     <string name="qiita_detail_title">Qiita Detail Page</string>
