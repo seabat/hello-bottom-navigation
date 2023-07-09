@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
 import dev.seabat.android.hellobottomnavi.databinding.PageQiitaBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
+import dev.seabat.android.hellobottomnavi.ui.pages.top.TopFragmentDirections
 
 @AndroidEntryPoint
 class QiitaFragment: Fragment(R.layout.page_qiita) {
@@ -84,11 +85,14 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
         }
     }
 
-
-
     private val onListItemClick: (title: String, htmlUrl: String) -> Unit =
         { title, htmlUrl ->
-            //TODO:
+            // Qiita 詳細画面に遷移する
+            val action = QiitaFragmentDirections.actionToQiitaDetail().apply {
+                this.title = title
+                this.url = htmlUrl
+            }
+            this.findNavController().navigate(action)
         }
 
     override fun onDestroyView() {
