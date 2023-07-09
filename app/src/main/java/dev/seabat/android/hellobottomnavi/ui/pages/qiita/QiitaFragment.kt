@@ -61,7 +61,8 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
         binding?.toolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_search -> {
-                    //TODO: 検索画面を起動する
+                    val action = QiitaFragmentDirections.actionToQiitaSearch()
+                    this@QiitaFragment.findNavController().navigate(action)
                     true
                 }
                 else -> false

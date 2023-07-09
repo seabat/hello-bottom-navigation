@@ -7,12 +7,16 @@
     <!-- リポジトリ詳細ページ -->
     <string name="repo_detail_title">Repository Detail Page</string>
 
-    <!-- Qiitaページ -->
+    <!-- Qiita ページ -->
     <string name="qiita_title">Qiita Page</string>
     <string name="qiita_title_recently">最近の記事</string>
 
+    <!-- Qiita 検索ページ -->
+    <string name="qiita_search_title">Qiita Search Page</string>
+
     <!-- Qiita 詳細ページ -->
     <string name="qiita_detail_title">Qiita Detail Page</string>
+    <string name="qiita_search_close">CLOSE</string>
 
     <!-- 共通 -->
     <string name="error_network_connection">インターネット接続に失敗しました。インターネット接続状態を確認してください。</string>
