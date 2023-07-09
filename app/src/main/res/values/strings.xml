@@ -9,6 +9,7 @@
 
     <!-- Qiitaページ -->
     <string name="qiita_title">Qiita Page</string>
+    <string name="qiita_title_recently">最近の記事</string>
 
     <!-- Qiita 詳細ページ -->
     <string name="qiita_detail_title">Qiita Detail Page</string>

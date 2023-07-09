@@ -52,7 +52,21 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
         }
 
         // タイトル
-        binding?.toolbar?.title = getString(R.string.qiita_title)
+        binding?.toolbar?.title = getString(R.string.qiita_title_recently)
+
+        // NOTE: フラグメントが所有するアプリバーは onCreateOptionsMenu ではなく
+        //       ここで onViewCreated 等で inflate する
+        //       ref. https://developer.android.com/guide/fragments/appbar?hl=ja#fragment-inflate
+        binding?.toolbar?.inflateMenu(R.menu.qiita)
+        binding?.toolbar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_search -> {
+                    //TODO: 検索画面を起動する
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun initObserver() {
