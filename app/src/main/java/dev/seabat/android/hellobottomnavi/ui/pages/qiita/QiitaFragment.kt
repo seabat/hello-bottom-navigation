@@ -2,6 +2,7 @@ package dev.seabat.android.hellobottomnavi.ui.pages.qiita
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -74,6 +75,9 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
     private fun initObserver() {
         viewModel.articles.observe(viewLifecycleOwner) {
             (binding?.recyclerview?.adapter as QiitaArticleListAdapter)?.updateArticleList(it)
+            if (it.size > 0 && it[0].totalCount != null) {
+                Toast.makeText(requireActivity(), "${it[0].totalCount.toString()}件ヒットしました。", Toast.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.progressVisible.observe(viewLifecycleOwner) {

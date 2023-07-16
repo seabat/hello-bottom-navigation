@@ -36,7 +36,8 @@ class QiitaArticlesRepository(
 
             if (response.isSuccessful) {
                 val responseBody = response.body()
-                val entityList = convertToEntity(responseBody)
+                val totalCount = response.headers().get("Total-Count")
+                val entityList = convertToEntity(responseBody, totalCount?.toInt() ?: null)
                 entityList
             } else {
                 val exception = QiitaExceptionConverter.convertTo(
@@ -48,11 +49,12 @@ class QiitaArticlesRepository(
         }
     }
 
-    private fun convertToEntity(articles: Array<QiitaArticle>?): QiitaArticleListEntity? {
+    private fun convertToEntity(articles: Array<QiitaArticle>?, totalCount: Int?): QiitaArticleListEntity? {
         return articles?.let { nonNullArticles ->
             QiitaArticleListEntity(
                 nonNullArticles.map {
                     QiitaArticleEntity(
+                        totalCount = totalCount,
                         createdAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.JAPAN).parse(it.createdAt),
                         // NOTE: LocalDateTime#parse は Android O 以降で使用可能
                         title = it.title,
