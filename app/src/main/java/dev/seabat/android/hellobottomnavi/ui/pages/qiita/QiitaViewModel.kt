@@ -11,6 +11,9 @@ import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCaseContract
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,11 +34,15 @@ class QiitaViewModel @Inject constructor(
     val errorMessage: LiveData<String?>
         get() = _errorMessage
 
-    fun loadQiitaArticles() {
+    /**
+     * @param startCreatedAt: 検索対象開始日 ex. 2023-07-02
+     * @param endCreatedAt: 検索対象終了日 ex. 2023-07-16
+     */
+    fun loadQiitaArticles(startCreatedAt: String, endCreatedAt: String? = null) {
         viewModelScope.launch {
             _progressVisible.value = true
             kotlin.runCatching {
-                fetchQiitaArticlesUseCase("2023-07-01", "Git")
+                fetchQiitaArticlesUseCase(startCreatedAt, endCreatedAt)
             }.onSuccess {
                 _articles.value = it
             }.onFailure {

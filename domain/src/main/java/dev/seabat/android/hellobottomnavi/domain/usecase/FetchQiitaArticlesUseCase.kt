@@ -6,9 +6,17 @@ import dev.seabat.android.hellobottomnavi.domain.repository.QiitaArticlesReposit
 class FetchQiitaArticlesUseCase(
     private val qiitaArticlesRepository: QiitaArticlesRepositoryContract
 ) : FetchQiitaArticlesUseCaseContract {
-    override suspend fun invoke(createdAt: String, title: String): QiitaArticleListEntity? {
+    override suspend fun invoke(
+        startCreatedAt: String,
+        endCreatedAt: String?,
+        title: String?
+    ): QiitaArticleListEntity? {
         // val query = "created:>${createdAt}+title:${title}" 500 エラーとなるので保留
-        val query = "created:>${createdAt}"
+        val query = if (endCreatedAt == null) {
+            "created:>=${startCreatedAt}"
+        } else {
+            "created:>=${startCreatedAt}+created:<=${endCreatedAt}"
+        }
         return qiitaArticlesRepository.fetchItems(query = query)
     }
 }

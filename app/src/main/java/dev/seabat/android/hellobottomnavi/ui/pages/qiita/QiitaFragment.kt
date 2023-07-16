@@ -14,7 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
 import dev.seabat.android.hellobottomnavi.databinding.PageQiitaBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
-import dev.seabat.android.hellobottomnavi.ui.pages.top.TopFragmentDirections
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class QiitaFragment: Fragment(R.layout.page_qiita) {
@@ -31,7 +33,6 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
         initView()
         initToolBar()
         initObserver()
-        viewModel.loadQiitaArticles()
         return
     }
 
@@ -98,6 +99,14 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
                 )
             }
         }
+
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>("searchParam")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadQiitaArticles(
+                    it.getString("start") ?: SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(Date()),
+                    it.getString("end")
+                )
+            }
     }
 
     private val onListItemClick: (title: String, htmlUrl: String) -> Unit =
@@ -109,6 +118,11 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
             }
             this.findNavController().navigate(action)
         }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.loadQiitaArticles(SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(Date()))
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

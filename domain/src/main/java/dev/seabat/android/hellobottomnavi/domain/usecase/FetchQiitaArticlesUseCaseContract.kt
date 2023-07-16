@@ -4,6 +4,8 @@ import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
 
 interface FetchQiitaArticlesUseCaseContract {
     suspend operator fun invoke(
-        createdAt: String, title: String
+        startCreatedAt: String,
+        endCreatedAt: String? = null,
+        title: String? = null
     ): QiitaArticleListEntity?
 }

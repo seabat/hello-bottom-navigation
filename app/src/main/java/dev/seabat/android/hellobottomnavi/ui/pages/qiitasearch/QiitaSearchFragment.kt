@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -62,7 +63,7 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
         PageQiitaSearchBinding.bind(view).let {
             // CLOSEボタン
             it.textClose.setOnClickListener {
-                this.dismiss()
+                goBack()
             }
             // 開始日ボタン
             it.buttonStartDate.setOnClickListener {
@@ -78,8 +79,7 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
 
             // 検索ボタン
             it.buttonSearch.setOnClickListener {
-                viewModel.search()
-                this.dismiss()
+                goBackWithValue()
             }
         }
     }
@@ -104,6 +104,20 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
         viewModel.startDate.observe(viewLifecycleOwner) {
             binding?.textStartDate?.text = SimpleDateFormat("YYYY年 MM月 dd日 (E)", Locale.JAPAN).format(it)
         }
+    }
+
+    private fun goBackWithValue() {
+        val startCreatedAt = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(viewModel.startDate.value)
+        val endCreatedAt = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(viewModel.endDate.value)
+        findNavController().previousBackStackEntry?.savedStateHandle?.set(
+            "searchParam", bundleOf("start" to startCreatedAt, "end" to endCreatedAt)
+        )
+
+        goBack()
+    }
+
+    private fun goBack() {
+        findNavController().popBackStack()
     }
 
     /**
