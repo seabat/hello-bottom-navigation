@@ -18,10 +18,6 @@ class QiitaSearchViewModel @Inject constructor(
     val startDate: LiveData<Date>
         get() = _startDate
 
-    private val _endDate = MutableLiveData<Date> (Date())
-    val endDate: LiveData<Date>
-        get() = _endDate
-
     private val _errorMessage = MutableLiveData<String?>(null)
     val errorMessage: LiveData<String?>
         get() = _errorMessage
@@ -32,14 +28,6 @@ class QiitaSearchViewModel @Inject constructor(
      */
     fun setStartDate(dateString: String) {
         _startDate.value = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).parse(dateString)
-    }
-
-    /**
-     *
-     * @param dateString ex. 2023-07-01
-     */
-    fun setEndDate(dateString: String) {
-        _endDate.value = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).parse(dateString)
     }
 
     /**

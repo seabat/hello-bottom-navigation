@@ -1,5 +1,6 @@
 package dev.seabat.android.hellobottomnavi.ui.pages.qiitasearch
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
@@ -16,11 +17,13 @@ import dev.seabat.android.hellobottomnavi.databinding.PageQiitaSearchBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
 import dev.seabat.android.hellobottomnavi.ui.pages.top.TopFragment
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 @AndroidEntryPoint
 class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search) {
     private val viewModel: QiitaSearchViewModel by viewModels()
+    private var binding: PageQiitaSearchBinding? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
@@ -46,9 +49,13 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
                     initView(it)
                     initObserver(it)
                 }
-
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = PageQiitaSearchBinding.bind(view)
     }
 
     private fun initView(view: View) {
@@ -57,15 +64,16 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
             it.textClose.setOnClickListener {
                 this.dismiss()
             }
-
             // 開始日ボタン
             it.buttonStartDate.setOnClickListener {
-                //TODO: 日付ピッカーを起動する
-            }
-
-            // 終了日ボタン
-            it.buttonEndDate.setOnClickListener {
-                //TODO: 日付ピッカーを起動する
+                DatePickerDialog(
+                    requireContext(),
+                    DatePickerDialog.OnDateSetListener() { _, year, month, dayOfMonth->
+                        viewModel.setStartDate("${year}-${month+1}-${dayOfMonth}")
+                    },
+                    Calendar.getInstance().get(Calendar.YEAR),
+                    Calendar.getInstance().get(Calendar.MONTH),
+                    Calendar.getInstance().get(Calendar.DAY_OF_MONTH)).show()
             }
 
             // 検索ボタン
@@ -93,13 +101,8 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
             }
         }
 
-        val binding = PageQiitaSearchBinding.bind(view)
         viewModel.startDate.observe(viewLifecycleOwner) {
-            binding.textStartDate.text = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(it)
-        }
-
-        viewModel.endDate.observe(viewLifecycleOwner) {
-            binding.textEndDate.text = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(it)
+            binding?.textStartDate?.text = SimpleDateFormat("YYYY年 MM月 dd日 (E)", Locale.JAPAN).format(it)
         }
     }
 
