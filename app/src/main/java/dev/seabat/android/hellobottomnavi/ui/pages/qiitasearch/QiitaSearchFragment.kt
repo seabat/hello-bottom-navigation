@@ -108,9 +108,8 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
 
     private fun goBackWithValue() {
         val startCreatedAt = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(viewModel.startDate.value)
-        val endCreatedAt = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(viewModel.endDate.value)
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
-            "searchParam", bundleOf("start" to startCreatedAt, "end" to endCreatedAt)
+            "searchParam", bundleOf("start" to startCreatedAt)
         )
 
         goBack()

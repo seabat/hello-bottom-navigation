@@ -8,15 +8,11 @@ class FetchQiitaArticlesUseCase(
 ) : FetchQiitaArticlesUseCaseContract {
     override suspend fun invoke(
         startCreatedAt: String,
-        endCreatedAt: String?,
         title: String?
     ): QiitaArticleListEntity? {
-        // val query = "created:>${createdAt}+title:${title}" 500 エラーとなるので保留
-        val query = if (endCreatedAt == null) {
-            "created:>=${startCreatedAt}"
-        } else {
-            "created:>=${startCreatedAt}+created:<=${endCreatedAt}"
-        }
+        // TODO: val query = "created:>${createdAt}+title:${title}" は
+        //       "+" をエンコードすると500 エラーとなってしまうので保留
+        val query = "created:>=${startCreatedAt}"
         return qiitaArticlesRepository.fetchItems(query = query)
     }
 }

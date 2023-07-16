@@ -26,7 +26,7 @@ class QiitaArticlesRepository(
                 endpoint.getItems(
                     token = "Bearer ${BuildConfig.QIITA_TOKEN}",
                     page= "1",
-                    per_page = "10",
+                    per_page = "100",
                     query= query ?: "created:>2023-04-01"
                 ).execute()
             } catch (e: Exception) { // 通信自体が失敗した場合

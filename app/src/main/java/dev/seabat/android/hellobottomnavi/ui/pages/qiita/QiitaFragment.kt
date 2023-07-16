@@ -104,7 +104,6 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
             ?.observe(viewLifecycleOwner) {
                 viewModel.loadQiitaArticles(
                     it.getString("start") ?: SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(Date()),
-                    it.getString("end")
                 )
             }
     }
