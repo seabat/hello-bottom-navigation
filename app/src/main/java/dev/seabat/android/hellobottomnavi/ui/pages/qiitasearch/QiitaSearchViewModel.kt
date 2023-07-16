@@ -14,7 +14,7 @@ import javax.inject.Inject
 class QiitaSearchViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private val _startDate = MutableLiveData<Date> (Date())
+    private val _startDate = MutableLiveData<Date>(Date())
     val startDate: LiveData<Date>
         get() = _startDate
 

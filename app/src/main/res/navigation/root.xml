@@ -69,8 +69,7 @@
         android:id="@+id/nav_qiita_search"
         android:name="dev.seabat.android.hellobottomnavi.ui.pages.qiitasearch.QiitaSearchFragment"
         android:label="@string/qiita_search_title"
-        tools:layout="@layout/page_qiita_search">
-    </dialog>
+        tools:layout="@layout/page_qiita_search"></dialog>
 
     <!-- Qiita 詳細画面 -->
     <fragment

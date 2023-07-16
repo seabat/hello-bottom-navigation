@@ -19,7 +19,8 @@ class TopViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var _repositories = MutableLiveData<RepositoryListEntity>(RepositoryListEntity(arrayListOf()))
+    private var _repositories =
+        MutableLiveData<RepositoryListEntity>(RepositoryListEntity(arrayListOf()))
     val repositories: LiveData<RepositoryListEntity>
         get() = _repositories
 
@@ -27,7 +28,7 @@ class TopViewModel @Inject constructor(
     val progressVisible: LiveData<Boolean>
         get() = _progressVisible
 
-    private val _errorMessage = MutableLiveData<String?> (null)
+    private val _errorMessage = MutableLiveData<String?>(null)
     val errorMessage: LiveData<String?>
         get() = _errorMessage
 
@@ -37,7 +38,7 @@ class TopViewModel @Inject constructor(
         query?.let {
             cachedQuery = it
         }
-        viewModelScope.launch{
+        viewModelScope.launch {
             _progressVisible.value = true
             kotlin.runCatching {
                 githubUseCase.loadRepos(cachedQuery) ?: RepositoryListEntity(arrayListOf())

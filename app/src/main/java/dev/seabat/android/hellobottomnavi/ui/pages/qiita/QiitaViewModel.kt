@@ -19,7 +19,8 @@ class QiitaViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _articles = MutableLiveData<QiitaArticleListEntity>(QiitaArticleListEntity(arrayListOf()))
+    private val _articles =
+        MutableLiveData<QiitaArticleListEntity>(QiitaArticleListEntity(arrayListOf()))
     val articles: LiveData<QiitaArticleListEntity>
         get() = _articles
 
@@ -27,7 +28,7 @@ class QiitaViewModel @Inject constructor(
     val progressVisible: LiveData<Boolean>
         get() = _progressVisible
 
-    private val _errorMessage = MutableLiveData<String?> (null)
+    private val _errorMessage = MutableLiveData<String?>(null)
     val errorMessage: LiveData<String?>
         get() = _errorMessage
 

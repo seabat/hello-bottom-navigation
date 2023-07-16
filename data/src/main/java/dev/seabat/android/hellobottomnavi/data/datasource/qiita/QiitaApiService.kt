@@ -10,8 +10,8 @@ interface QiitaApiService {
     @GET("items")
     fun getItems(
         @Header("Authorization") token: String,
-        @Query("page") page : String,
-        @Query("per_page") per_page : String,
-        @Query("query") query : String
+        @Query("page") page: String,
+        @Query("per_page") per_page: String,
+        @Query("query") query: String
     ): Call<Array<QiitaArticle>>
 }

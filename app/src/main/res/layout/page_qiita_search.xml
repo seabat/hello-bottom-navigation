@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/qiita_search_close"
-        />
+        android:text="@string/qiita_search_close" />
 
     <!-- 説明 -->
     <TextView
@@ -26,8 +25,7 @@
         android:text="@string/qiita_search_description"
         app:layout_constraintTop_toBottomOf="@id/text_close"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_start"
@@ -36,8 +34,7 @@
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/text_desc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent">
 
         <android.widget.Button
             android:id="@+id/button_start_date"
@@ -46,8 +43,7 @@
             android:text="@string/qiita_search_start_date"
             android:background="@color/green_500"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/text_start_date"
@@ -58,8 +54,7 @@
             app:layout_constraintTop_toTopOf="@id/button_start_date"
             app:layout_constraintBottom_toBottomOf="@id/button_start_date"
             app:layout_constraintStart_toEndOf="@id/button_start_date"
-            tool:text="2023年7月23日(月)"
-            />
+            tool:text="2023年7月23日(月)" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -72,7 +67,6 @@
         android:background="@color/green_500"
         app:layout_constraintTop_toBottomOf="@id/layout_start"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

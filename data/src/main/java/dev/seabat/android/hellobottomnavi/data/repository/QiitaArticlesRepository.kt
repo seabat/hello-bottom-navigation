@@ -25,9 +25,9 @@ class QiitaArticlesRepository(
                 // 同期方式で HTTP 通信を行う
                 endpoint.getItems(
                     token = "Bearer ${BuildConfig.QIITA_TOKEN}",
-                    page= "1",
+                    page = "1",
                     per_page = "100",
-                    query= query ?: "created:>2023-04-01"
+                    query = query ?: "created:>2023-04-01"
                 ).execute()
             } catch (e: Exception) { // 通信自体が失敗した場合
                 val exception = HelloException.convertTo(e as Throwable)
@@ -49,13 +49,18 @@ class QiitaArticlesRepository(
         }
     }
 
-    private fun convertToEntity(articles: Array<QiitaArticle>?, totalCount: Int?): QiitaArticleListEntity? {
+    private fun convertToEntity(
+        articles: Array<QiitaArticle>?,
+        totalCount: Int?
+    ): QiitaArticleListEntity? {
         return articles?.let { nonNullArticles ->
             QiitaArticleListEntity(
                 nonNullArticles.map {
                     QiitaArticleEntity(
                         totalCount = totalCount,
-                        createdAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.JAPAN).parse(it.createdAt),
+                        createdAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.JAPAN).parse(
+                            it.createdAt
+                        ),
                         // NOTE: LocalDateTime#parse は Android O 以降で使用可能
                         title = it.title,
                         url = it.url,

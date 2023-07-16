@@ -30,7 +30,9 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
         return super.onCreateDialog(savedInstanceState).apply {
             setOnShowListener { it ->
                 val bottomSheetDialog = (it as? BottomSheetDialog) ?: return@setOnShowListener
-                val bottomSheet = bottomSheetDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet) ?: return@setOnShowListener
+                val bottomSheet =
+                    bottomSheetDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+                        ?: return@setOnShowListener
 
                 BottomSheetBehavior.from(bottomSheet).apply {
                     state = BottomSheetBehavior.STATE_EXPANDED
@@ -69,12 +71,13 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
             it.buttonStartDate.setOnClickListener {
                 DatePickerDialog(
                     requireContext(),
-                    DatePickerDialog.OnDateSetListener() { _, year, month, dayOfMonth->
-                        viewModel.setStartDate("${year}-${month+1}-${dayOfMonth}")
+                    DatePickerDialog.OnDateSetListener() { _, year, month, dayOfMonth ->
+                        viewModel.setStartDate("${year}-${month + 1}-${dayOfMonth}")
                     },
                     Calendar.getInstance().get(Calendar.YEAR),
                     Calendar.getInstance().get(Calendar.MONTH),
-                    Calendar.getInstance().get(Calendar.DAY_OF_MONTH)).show()
+                    Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                ).show()
             }
 
             // 検索ボタン
@@ -86,14 +89,17 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
 
     private fun initObserver(view: View) {
         viewModel.errorMessage.observe(viewLifecycleOwner) {
-            if(it != null) {
+            if (it != null) {
                 showSimpleErrorDialog(
                     message = it,
                     requestKey = TopFragment.TAG,
                     requestBundle = bundleOf("errorMessage" to it),
                     onClickCallback = { key, bundle ->
                         if (key == TopFragment.TAG) {
-                            android.util.Log.d("Hello", "Error dialog closed(${bundle.getString("errorMessage")})")
+                            android.util.Log.d(
+                                "Hello",
+                                "Error dialog closed(${bundle.getString("errorMessage")})"
+                            )
                             viewModel.clearError()
                         }
                     }
@@ -102,12 +108,14 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
         }
 
         viewModel.startDate.observe(viewLifecycleOwner) {
-            binding?.textStartDate?.text = SimpleDateFormat("YYYY年 MM月 dd日 (E)", Locale.JAPAN).format(it)
+            binding?.textStartDate?.text =
+                SimpleDateFormat("YYYY年 MM月 dd日 (E)", Locale.JAPAN).format(it)
         }
     }
 
     private fun goBackWithValue() {
-        val startCreatedAt = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(viewModel.startDate.value)
+        val startCreatedAt =
+            SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(viewModel.startDate.value)
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
             "searchParam", bundleOf("start" to startCreatedAt)
         )

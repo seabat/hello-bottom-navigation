@@ -23,7 +23,7 @@ object QiitaExceptionConverter {
             500 -> ErrorType.NETWORK_INTERNAL_SERVER_ERROR
             else -> ErrorType.NETWORK_UNKNOWN_ERROR
         }
-        val errorMessage = when(errorType) {
+        val errorMessage = when (errorType) {
             ErrorType.NETWORK_UNKNOWN_ERROR -> {
                 val errorResponse = errorBody?.let {
                     convertToErrorResponse(it)
@@ -32,6 +32,7 @@ object QiitaExceptionConverter {
                     it.message
                 }
             }
+
             ErrorType.NETWORK_INTERNAL_SERVER_ERROR -> errorBody
             else -> {
                 null

@@ -20,7 +20,7 @@ import java.util.Date
 import java.util.Locale
 
 @AndroidEntryPoint
-class QiitaFragment: Fragment(R.layout.page_qiita) {
+class QiitaFragment : Fragment(R.layout.page_qiita) {
     companion object {
         val TAG: String = QiitaFragment::class.java.simpleName
     }
@@ -67,6 +67,7 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
                     this@QiitaFragment.findNavController().navigate(action)
                     true
                 }
+
                 else -> false
             }
         }
@@ -76,12 +77,16 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
         viewModel.articles.observe(viewLifecycleOwner) {
             (binding?.recyclerview?.adapter as QiitaArticleListAdapter)?.updateArticleList(it)
             if (it.size > 0 && it[0].totalCount != null) {
-                Toast.makeText(requireActivity(), "${it[0].totalCount.toString()}件ヒットしました。", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireActivity(),
+                    "${it[0].totalCount.toString()}件ヒットしました。",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
         viewModel.progressVisible.observe(viewLifecycleOwner) {
-            if(it) {
+            if (it) {
                 binding?.progressbar?.visibility = View.VISIBLE
             } else {
                 binding?.progressbar?.visibility = View.GONE
@@ -89,14 +94,17 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
-            if(it != null) {
+            if (it != null) {
                 showSimpleErrorDialog(
                     message = it,
                     requestKey = TAG,
                     requestBundle = bundleOf("errorMessage" to it),
                     onClickCallback = { key, bundle ->
                         if (key == TAG) {
-                            android.util.Log.d("Hello", "Error dialog closed(${bundle.getString("errorMessage")})")
+                            android.util.Log.d(
+                                "Hello",
+                                "Error dialog closed(${bundle.getString("errorMessage")})"
+                            )
                             viewModel.clearError()
                         }
                     }
@@ -107,7 +115,9 @@ class QiitaFragment: Fragment(R.layout.page_qiita) {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>("searchParam")
             ?.observe(viewLifecycleOwner) {
                 viewModel.loadQiitaArticles(
-                    it.getString("start") ?: SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(Date()),
+                    it.getString("start") ?: SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(
+                        Date()
+                    ),
                 )
             }
     }
