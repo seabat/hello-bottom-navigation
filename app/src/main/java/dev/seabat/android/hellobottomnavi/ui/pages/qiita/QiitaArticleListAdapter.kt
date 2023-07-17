@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.seabat.android.hellobottomnavi.databinding.ListitemQiitaArticleBinding
 import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleEntity
 import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
+import dev.seabat.android.hellobottomnavi.utils.convertToJapaneseCalender
 import java.util.Date
 import java.util.Locale
 
@@ -53,13 +54,6 @@ class QiitaArticleListAdapter(
             binding.layoutRoot.setOnClickListener {
                 onListItemClick(data.title, data.url)
             }
-        }
-
-        private fun convertToJapaneseCalender(date: Date): String {
-            val calendar: Calendar = JapaneseCalendar()
-            val df: DateFormat = SimpleDateFormat("Gy年M月d日", DateFormatSymbols(calendar, Locale.JAPANESE))
-            df.calendar = calendar
-            return df.format(date)
         }
     }
 

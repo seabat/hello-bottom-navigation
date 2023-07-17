@@ -10,6 +10,7 @@
     <!-- Qiita ページ -->
     <string name="qiita_title">Qiita Page</string>
     <string name="qiita_title_recently">最近の記事</string>
+    <string name="qiita_title_posted_date">投稿日: </string>
 
     <!-- Qiita 検索ページ -->
     <string name="qiita_search_title">Qiita Search Page</string>
