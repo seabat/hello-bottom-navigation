@@ -50,11 +50,12 @@ class QiitaFragment : Fragment(R.layout.page_qiita) {
     }
 
     private fun initToolBar() {
-        // 戻るボタン
-        this.findNavController().let {
-            val appBarConfig = AppBarConfiguration(it.graph)
-            binding?.toolbar?.setupWithNavController(it, appBarConfig)
-        }
+        //NOT: タブ画面には「戻る」ボタンが要らないので以下をコメントアウトする
+//        // 戻るボタン
+//        this.findNavController().let {
+//            val appBarConfig = AppBarConfiguration(it.graph)
+//            binding?.toolbar?.setupWithNavController(it, appBarConfig)
+//        }
 
         // タイトル
         binding?.toolbar?.title = getString(R.string.qiita_title_recently)
