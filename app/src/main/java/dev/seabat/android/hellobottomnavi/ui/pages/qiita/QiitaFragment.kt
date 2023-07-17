@@ -1,5 +1,6 @@
 package dev.seabat.android.hellobottomnavi.ui.pages.qiita
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -15,6 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
 import dev.seabat.android.hellobottomnavi.databinding.PageQiitaBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
+import dev.seabat.android.hellobottomnavi.utils.convertToJapaneseCalender
+import dev.seabat.android.hellobottomnavi.utils.getDateFromBundle
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -112,13 +115,15 @@ class QiitaFragment : Fragment(R.layout.page_qiita) {
             }
         }
 
+        // 検索日でタイトルを更新
+        viewModel.searchDate.observe(viewLifecycleOwner) {
+            binding?.toolbar?.title = getString(R.string.qiita_title_posted_date) + convertToJapaneseCalender(it) + "〜"
+        }
+
+        // 検索画面から検索日を受け取る
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>("searchParam")
             ?.observe(viewLifecycleOwner) {
-                viewModel.loadQiitaArticles(
-                    it.getString("start") ?: SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(
-                        Date()
-                    ),
-                )
+                viewModel.loadQiitaArticles(getDateFromBundle(it, "start"))
             }
     }
 
@@ -134,7 +139,7 @@ class QiitaFragment : Fragment(R.layout.page_qiita) {
 
     override fun onStart() {
         super.onStart()
-        viewModel.loadQiitaArticles(SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(Date()))
+        viewModel.loadQiitaArticles(Date())
     }
 
     override fun onDestroyView() {

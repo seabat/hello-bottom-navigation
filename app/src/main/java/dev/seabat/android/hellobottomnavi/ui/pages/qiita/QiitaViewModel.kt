@@ -11,6 +11,9 @@ import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCaseContract
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,20 +35,31 @@ class QiitaViewModel @Inject constructor(
     val errorMessage: LiveData<String?>
         get() = _errorMessage
 
+    /** 検索投稿日 */
+    private val _searchDate = MutableLiveData<Date>(Date())
+    val searchDate: LiveData<Date>
+        get() = _searchDate
+
     /**
-     * @param startCreatedAt: 検索対象開始日 ex. 2023-07-02
+     * @param searchDate: 検索投稿日
      */
-    fun loadQiitaArticles(startCreatedAt: String) {
+    fun loadQiitaArticles(searchDate: Date) {
+        _searchDate.postValue(searchDate)
+        val dateString = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(searchDate)
+
         viewModelScope.launch {
             _progressVisible.value = true
             kotlin.runCatching {
-                fetchQiitaArticlesUseCase(startCreatedAt)
+                fetchQiitaArticlesUseCase(dateString)
             }.onSuccess {
                 _articles.value = it
             }.onFailure {
-                val errorString = ErrorStringConverter.convertTo((it as HelloException).errType)
-                android.util.Log.d("Hello", errorString)
-                _errorMessage.value = errorString
+                //NOTE: コルーチンがキャンセルされたとき(JobCancellationException)はエラーを表示しない
+                (it as? HelloException)?.let { e ->
+                    val errorString = ErrorStringConverter.convertTo(e.errType)
+                    android.util.Log.d("Hello", errorString)
+                    _errorMessage.value = errorString
+                }
             }.also {
                 _progressVisible.value = false
             }

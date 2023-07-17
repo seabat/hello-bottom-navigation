@@ -2,6 +2,9 @@ package dev.seabat.android.hellobottomnavi.ui.pages.qiitasearch
 
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.icu.text.DateFormat
+import android.icu.text.DateFormatSymbols
+import android.icu.util.JapaneseCalendar
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -17,8 +20,10 @@ import dev.seabat.android.hellobottomnavi.R
 import dev.seabat.android.hellobottomnavi.databinding.PageQiitaSearchBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
 import dev.seabat.android.hellobottomnavi.ui.pages.top.TopFragment
+import dev.seabat.android.hellobottomnavi.utils.convertToJapaneseCalender
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -59,6 +64,11 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = PageQiitaSearchBinding.bind(view)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     private fun initView(view: View) {
@@ -108,16 +118,13 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
         }
 
         viewModel.startDate.observe(viewLifecycleOwner) {
-            binding?.textStartDate?.text =
-                SimpleDateFormat("YYYY年 MM月 dd日 (E)", Locale.JAPAN).format(it)
+            binding?.textStartDate?.text = convertToJapaneseCalender(it)
         }
     }
 
     private fun goBackWithValue() {
-        val startCreatedAt =
-            SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN).format(viewModel.startDate.value)
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
-            "searchParam", bundleOf("start" to startCreatedAt)
+            "searchParam", bundleOf("start" to viewModel.startDate.value)
         )
 
         goBack()

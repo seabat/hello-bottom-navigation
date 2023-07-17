@@ -2,14 +2,17 @@
     <string name="app_name">Hello Bottom Navigation</string>
 
     <!-- トップページ -->
+    <string name="top_tab">Top</string>
     <string name="top_title">Top Page</string>
 
     <!-- リポジトリ詳細ページ -->
     <string name="repo_detail_title">Repository Detail Page</string>
 
     <!-- Qiita ページ -->
+    <string name="qiita_tab">Qiita</string>
     <string name="qiita_title">Qiita Page</string>
     <string name="qiita_title_recently">最近の記事</string>
+    <string name="qiita_title_posted_date">投稿日: </string>
 
     <!-- Qiita 検索ページ -->
     <string name="qiita_search_title">Qiita Search Page</string>
