@@ -23,6 +23,14 @@
                 app:argType="string"
                 android:defaultValue="GitHub" />
         </action>
+        <action
+            android:id="@+id/action_to_setting"
+            app:destination="@id/nav_setting" >
+            <argument
+                android:name="inVisibleBottomNav"
+                app:argType="boolean"
+                android:defaultValue="true" />
+        </action>
     </fragment>
 
     <!-- リポジトリ詳細画面 -->
@@ -39,6 +47,18 @@
             android:name="repoName"
             app:argType="string"
             android:defaultValue="GitHub" />
+    </fragment>
+
+    <!-- 設定 -->
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="dev.seabat.android.hellobottomnavi.ui.pages.setting.SettingFragment"
+        android:label="@string/setting_title"
+        tools:layout="@layout/page_setting">
+        <argument
+            android:name="inVisibleBottomNav"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
 
     <!-- Qiita 画面 -->

@@ -112,6 +112,12 @@ class TopFragment : Fragment(R.layout.page_top) {
                     true
                 }
 
+                R.id.menu_setting -> {
+                    val action = TopFragmentDirections.actionToSetting().apply { inVisibleBottomNav = true }
+                    findNavController().navigate(action)
+                    true
+                }
+
                 else -> false
             }
         }

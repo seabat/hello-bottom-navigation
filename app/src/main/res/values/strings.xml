@@ -8,6 +8,10 @@
     <!-- リポジトリ詳細ページ -->
     <string name="repo_detail_title">Repository Detail Page</string>
 
+    <!-- 設定 -->
+    <string name="setting_title">設定</string>
+    <string name="setting_version_key">バージョン: </string>
+
     <!-- Qiita ページ -->
     <string name="qiita_tab">Qiita</string>
     <string name="qiita_title">Qiita Page</string>
