@@ -45,9 +45,11 @@ class TopViewModel @Inject constructor(
             }.onSuccess { repositories ->
                 _repositories.value = repositories
             }.onFailure {
-                val errorString = ErrorStringConverter.convertTo((it as HelloException).errType)
-                android.util.Log.d("Hello", errorString)
-                _errorMessage.value = errorString
+                (it as? HelloException)?.let { e ->
+                    val errorString = ErrorStringConverter.convertTo(e.errType)
+                    android.util.Log.d("Hello", errorString)
+                    _errorMessage.value = errorString
+                }
             }.also {
                 _progressVisible.value = false
             }

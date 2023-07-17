@@ -3,11 +3,11 @@
     <item
         android:id="@+id/nav_top"
         android:icon="@drawable/github_mark"
-        android:title="@string/top_title" />
+        android:title="@string/top_tab" />
 
     <item
         android:id="@+id/nav_qiita"
         android:icon="@drawable/qiita"
-        android:title="@string/qiita_title" />
+        android:title="@string/qiita_tab" />
 
 </menu>
