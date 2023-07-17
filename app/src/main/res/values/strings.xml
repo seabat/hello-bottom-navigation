@@ -7,8 +7,21 @@
     <!-- リポジトリ詳細ページ -->
     <string name="repo_detail_title">Repository Detail Page</string>
 
-    <!-- Qiitaページ -->
+    <!-- Qiita ページ -->
     <string name="qiita_title">Qiita Page</string>
+    <string name="qiita_title_recently">最近の記事</string>
+
+    <!-- Qiita 検索ページ -->
+    <string name="qiita_search_title">Qiita Search Page</string>
+    <string name="qiita_search_description">記事を検索する期間を指定してください。</string>
+    <string name="qiita_search_start_date">開始日</string>
+    <string name="qiita_search_end_date">終了日</string>
+    <string name="qiita_search_search">検索</string>
+
+
+    <!-- Qiita 詳細ページ -->
+    <string name="qiita_detail_title">Qiita Detail Page</string>
+    <string name="qiita_search_close">CLOSE</string>
 
     <!-- 共通 -->
     <string name="error_network_connection">インターネット接続に失敗しました。インターネット接続状態を確認してください。</string>
@@ -18,5 +31,6 @@
     <string name="error_network_forbidden">アクセス権限がありません。</string>
     <string name="error_network_not_found">アクセス先が見つかりません。</string>
     <string name="error_network_unknown">通信中に不明なエラーが発生しました。</string>
+    <string name="error_network_internal_server">サーバー側で何かしらのエラーが発生しました。</string>
     <string name="error_unknown">不明なエラーが発生しました。</string>
 </resources>

@@ -24,6 +24,9 @@ enum class ErrorType(val value: Int) {
     /** 404: アクセスしたリソースが存在しない  */
     NETWORK_NOT_FOUND(108),
 
+    /** 500: Internal Server Error */
+    NETWORK_INTERNAL_SERVER_ERROR(109),
+
     /** 不明なネットワークエラー */
     NETWORK_UNKNOWN_ERROR(199),
 

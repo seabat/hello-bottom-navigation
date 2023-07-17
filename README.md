@@ -2,16 +2,17 @@
 
 BottomNavigationViewとJetpack Navigationを組み合わせた画面遷移を実装してみる。
 
-
 ## トラブル解消
 
 #### タブAのサブページを表示している状態でタブBに遷移し、タブAに戻ってもタブAが選択状態にならない事象を解消する
 
 事象  
-https://github.com/seabat/hello-bottom-navigation/assets/4818667/1d14739d-abf8-4d46-b333-628c5172e284  
+https://github.com/seabat/hello-bottom-navigation/assets/4818667/1d14739d-abf8-4d46-b333-628c5172e284
 
 対策  
-`setOnItemSelectedListener` を override し、true を返す。([BottomNavigationViewとJetpack Navigationを組み合わせた画面遷移の実装の勘所](https://inside.luchegroup.com/entry/2023/05/08/113236) を参考)
+`setOnItemSelectedListener` を override し、true
+を返す。([BottomNavigationViewとJetpack Navigationを組み合わせた画面遷移の実装の勘所](https://inside.luchegroup.com/entry/2023/05/08/113236)
+を参考)
 
 ```diff
     override fun onCreate(savedInstanceState: Bundle?) {

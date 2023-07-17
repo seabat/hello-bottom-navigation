@@ -1,6 +1,7 @@
 package dev.seabat.android.hellobottomnavi.data.datasource.github.model
 
 import com.squareup.moshi.Json
+
 data class Repository(
     val name: String,
     @Json(name = "full_name") val fullName: String,

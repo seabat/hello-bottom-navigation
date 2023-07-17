@@ -19,10 +19,10 @@ fun Activity.showSimpleErrorDialog(
     message: String,
     requestKey: String,
     requestBundle: Bundle,
-    onClickCallback: (key: String, bundle: Bundle)->Unit
+    onClickCallback: (key: String, bundle: Bundle) -> Unit
 ) {
     val dialogFragment = SimpleErrorDialogFragment().apply {
-        arguments = Bundle().apply{
+        arguments = Bundle().apply {
             putString(ARG_TITLE, title)
             putString(ARG_MESSAGE, message)
             putString(ARG_POSITIVE_BUTTON_TEXT, "CLOSE")
@@ -32,7 +32,10 @@ fun Activity.showSimpleErrorDialog(
     }
 
     val fragmentTransaction = (this as AppCompatActivity).supportFragmentManager.beginTransaction()
-    (this as AppCompatActivity).supportFragmentManager.setFragmentResultListener(requestKey, this) { key, bundle ->
+    (this as AppCompatActivity).supportFragmentManager.setFragmentResultListener(
+        requestKey,
+        this
+    ) { key, bundle ->
         onClickCallback(key, bundle)
     }
     dialogFragment.show(fragmentTransaction, SimpleErrorDialogFragment.TAG)
@@ -43,10 +46,10 @@ fun Fragment.showSimpleErrorDialog(
     message: String,
     requestKey: String,
     requestBundle: Bundle,
-    onClickCallback: (key: String, bundle: Bundle)->Unit
+    onClickCallback: (key: String, bundle: Bundle) -> Unit
 ) {
     val dialogFragment = SimpleErrorDialogFragment().apply {
-        arguments = Bundle().apply{
+        arguments = Bundle().apply {
             putString(ARG_TITLE, title)
             putString(ARG_MESSAGE, message)
             putString(ARG_POSITIVE_BUTTON_TEXT, "CLOSE")
