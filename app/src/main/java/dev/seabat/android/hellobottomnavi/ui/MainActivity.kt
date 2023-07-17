@@ -2,6 +2,7 @@ package dev.seabat.android.hellobottomnavi.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -28,6 +29,16 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { item ->
             NavigationUI.onNavDestinationSelected(item, fragment.navController)
             true
+        }
+
+        fragment.navController.addOnDestinationChangedListener { _, _, argument ->
+            argument?.getBoolean("inVisibleBottomNav").let {
+                if (it == true) {
+                    bottomNav.visibility = View.GONE
+                } else {
+                    bottomNav.visibility = View.VISIBLE
+                }
+            }
         }
     }
 }
