@@ -66,6 +66,11 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
         binding = PageQiitaSearchBinding.bind(view)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     private fun initView(view: View) {
         PageQiitaSearchBinding.bind(view).let {
             // CLOSEボタン
