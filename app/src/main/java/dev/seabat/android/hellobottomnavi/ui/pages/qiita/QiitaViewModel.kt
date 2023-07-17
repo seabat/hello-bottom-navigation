@@ -54,9 +54,12 @@ class QiitaViewModel @Inject constructor(
             }.onSuccess {
                 _articles.value = it
             }.onFailure {
-                val errorString = ErrorStringConverter.convertTo((it as HelloException).errType)
-                android.util.Log.d("Hello", errorString)
-                _errorMessage.value = errorString
+                //NOTE: コルーチンがキャンセルされたとき(JobCancellationException)はエラーを表示しない
+                (it as? HelloException)?.let {
+                    val errorString = ErrorStringConverter.convertTo((it as HelloException).errType)
+                    android.util.Log.d("Hello", errorString)
+                    _errorMessage.value = errorString
+                }
             }.also {
                 _progressVisible.value = false
             }
