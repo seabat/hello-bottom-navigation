@@ -33,11 +33,30 @@ BottomNavigationView と Jetpack Navigation の連携でタブを切り替える
 * イメージロードライブラリ  
   [Glide](https://github.com/bumptech/glide)  
 
+* [Secrets Gradle プラグイン](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ja)
+
+## その他採用技術
+
+* [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+
+* [バージョンカタログ](https://docs.gradle.org/current/userguide/platforms.html)
+
 
 ## 画面スクリーンショット
 
 <img src="images/top.png" width="200">　<img src="images/repo_detail.png" width="200">　<img src="images/setting.png" width="200">  
 <img src="images/qiita_list.png" width="200">　<img src="images/qiita_detail.png" width="200">　<img src="images/qiita_search.png" width="200">
+
+## 使い方
+
+1. git clone で本プロジェクトをダウンロード
+2. Android Studio で本プロジェクトを開く  
+    `Android Studio Flamingo | 2022.2.1 Patch 2` を推奨
+3. [Qiita](https://qiita.com/) にログインしてトークンを取得し、local.properties にトークンを設定
+    ```
+    QIITA_TOKEN=XXXXX2082a357YYYYYa165a88c5d194cb7dZZZZZ
+    ```
+4. ビルド
 
 
 ## Commit Tree
