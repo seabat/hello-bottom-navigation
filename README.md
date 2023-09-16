@@ -47,6 +47,12 @@ BottomNavigationView と Jetpack Navigation の連携でタブを切り替える
 <img src="images/top.png" width="200">　<img src="images/repo_detail.png" width="200">　<img src="images/setting.png" width="200">  
 <img src="images/qiita_list.png" width="200">　<img src="images/qiita_detail.png" width="200">　<img src="images/qiita_search.png" width="200">
 
+
+## Navigation 設計
+
+<img src="docs/navigation.png" width="400">
+
+
 ## 使い方
 
 1. git clone で本プロジェクトをダウンロード
