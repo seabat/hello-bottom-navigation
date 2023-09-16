@@ -1,4 +1,4 @@
-package dev.seabat.android.hellobottomnavi.ui.pages.top
+package dev.seabat.android.hellobottomnavi.ui.pages.gitrepo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,9 +9,9 @@ import dev.seabat.android.hellobottomnavi.databinding.ListitemGithubRepoBinding
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryEntity
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryListEntity
 
-class RepositoryListAdapter(
+class GitRepositoryListAdapter(
     private val onListItemClick: (fullName: String, htmlUrl: String) -> Unit
-) : RecyclerView.Adapter<RepositoryListAdapter.RepositoryHolder>() {
+) : RecyclerView.Adapter<GitRepositoryListAdapter.RepositoryHolder>() {
     var items = RepositoryListEntity(arrayListOf())
 
     fun updateRepositoryList(repositoryList: RepositoryListEntity) {

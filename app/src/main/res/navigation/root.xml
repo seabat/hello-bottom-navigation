@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_root"
-    app:startDestination="@id/nav_top">
+    app:startDestination="@id/nav_git_repo">
 
     <!-- トップ画面 -->
     <fragment
-        android:id="@+id/nav_top"
-        android:name="dev.seabat.android.hellobottomnavi.ui.pages.top.TopFragment"
-        android:label="@string/top_title"
-        tools:layout="@layout/page_top">
+        android:id="@+id/nav_git_repo"
+        android:name="dev.seabat.android.hellobottomnavi.ui.pages.gitrepo.GitRepositoryFragment"
+        android:label="@string/git_repo_title"
+        tools:layout="@layout/page_git_repository">
         <action
-            android:id="@+id/action_to_repo_detail"
-            app:destination="@id/nav_repo_detail">
+            android:id="@+id/action_to_git_repo_detail"
+            app:destination="@id/nav_git_repo_detail">
             <argument
                 android:name="repoUrl"
                 app:argType="string"
@@ -35,10 +35,10 @@
 
     <!-- リポジトリ詳細画面 -->
     <fragment
-        android:id="@+id/nav_repo_detail"
-        android:name="dev.seabat.android.hellobottomnavi.ui.pages.repodetail.RepoDetailFragment"
+        android:id="@+id/nav_git_repo_detail"
+        android:name="dev.seabat.android.hellobottomnavi.ui.pages.girepodetail.GitRepositoryDetailFragment"
         android:label="@string/repo_detail_title"
-        tools:layout="@layout/page_repo_detail">
+        tools:layout="@layout/page_git_repository_detail">
         <argument
             android:name="repoUrl"
             app:argType="string"

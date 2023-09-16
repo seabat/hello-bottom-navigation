@@ -1,4 +1,4 @@
-package dev.seabat.android.hellobottomnavi.ui.pages.top
+package dev.seabat.android.hellobottomnavi.ui.pages.gitrepo
 
 import android.os.Bundle
 import android.view.View
@@ -11,21 +11,21 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
-import dev.seabat.android.hellobottomnavi.databinding.PageTopBinding
+import dev.seabat.android.hellobottomnavi.databinding.PageGitRepositoryBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
 
 @AndroidEntryPoint
-class TopFragment : Fragment(R.layout.page_top) {
+class GitRepositoryFragment : Fragment(R.layout.page_git_repository) {
     companion object {
-        val TAG: String = TopFragment::class.java.simpleName
+        val TAG: String = GitRepositoryFragment::class.java.simpleName
     }
 
-    private var binding: PageTopBinding? = null
-    private val viewModel: TopViewModel by viewModels()
+    private var binding: PageGitRepositoryBinding? = null
+    private val viewModel: GitRepositoryViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = PageTopBinding.bind(view)
+        binding = PageGitRepositoryBinding.bind(view)
         initAppBar()
         initView()
         initObserver()
@@ -38,7 +38,7 @@ class TopFragment : Fragment(R.layout.page_top) {
             layoutManager = LinearLayoutManager(requireContext())
             val decoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
             addItemDecoration(decoration)
-            adapter = RepositoryListAdapter(onListItemClick = this@TopFragment.onListItemClick)
+            adapter = GitRepositoryListAdapter(onListItemClick = this@GitRepositoryFragment.onListItemClick)
         }
 
         binding?.search?.setOnCloseListener {
@@ -63,7 +63,7 @@ class TopFragment : Fragment(R.layout.page_top) {
 
     private fun initObserver() {
         viewModel.repositories.observe(viewLifecycleOwner) {
-            (binding?.recyclerview?.adapter as RepositoryListAdapter)?.updateRepositoryList(it)
+            (binding?.recyclerview?.adapter as GitRepositoryListAdapter)?.updateRepositoryList(it)
         }
 
         viewModel.progressVisible.observe(viewLifecycleOwner) {
@@ -113,7 +113,7 @@ class TopFragment : Fragment(R.layout.page_top) {
                 }
 
                 R.id.menu_setting -> {
-                    val action = TopFragmentDirections.actionToSetting().apply { inVisibleBottomNav = true }
+                    val action = GitRepositoryFragmentDirections.actionToSetting().apply { inVisibleBottomNav = true }
                     findNavController().navigate(action)
                     true
                 }
@@ -125,7 +125,7 @@ class TopFragment : Fragment(R.layout.page_top) {
 
     private val onListItemClick: (fullName: String, htmlUrl: String) -> Unit =
         { fullName, htmlUrl ->
-            val action = TopFragmentDirections.actionToRepoDetail().apply {
+            val action = GitRepositoryFragmentDirections.actionToGitRepoDetail().apply {
                 repoName = fullName
                 repoUrl = htmlUrl
             }

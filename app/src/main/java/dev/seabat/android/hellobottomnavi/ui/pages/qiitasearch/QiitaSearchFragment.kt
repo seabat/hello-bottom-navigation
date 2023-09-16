@@ -2,9 +2,6 @@ package dev.seabat.android.hellobottomnavi.ui.pages.qiitasearch
 
 import android.app.DatePickerDialog
 import android.app.Dialog
-import android.icu.text.DateFormat
-import android.icu.text.DateFormatSymbols
-import android.icu.util.JapaneseCalendar
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -19,12 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
 import dev.seabat.android.hellobottomnavi.databinding.PageQiitaSearchBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
-import dev.seabat.android.hellobottomnavi.ui.pages.top.TopFragment
+import dev.seabat.android.hellobottomnavi.ui.pages.gitrepo.GitRepositoryFragment
 import dev.seabat.android.hellobottomnavi.utils.convertToJapaneseCalender
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 @AndroidEntryPoint
 class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search) {
@@ -102,10 +96,10 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
             if (it != null) {
                 showSimpleErrorDialog(
                     message = it,
-                    requestKey = TopFragment.TAG,
+                    requestKey = GitRepositoryFragment.TAG,
                     requestBundle = bundleOf("errorMessage" to it),
                     onClickCallback = { key, bundle ->
-                        if (key == TopFragment.TAG) {
+                        if (key == GitRepositoryFragment.TAG) {
                             android.util.Log.d(
                                 "Hello",
                                 "Error dialog closed(${bundle.getString("errorMessage")})"

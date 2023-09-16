@@ -1,13 +1,12 @@
-package dev.seabat.android.hellobottomnavi.ui.pages.repodetail
+package dev.seabat.android.hellobottomnavi.ui.pages.girepodetail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.seabat.android.hellobottomnavi.domain.usecase.GithubUseCaseContract
 import javax.inject.Inject
 
 @HiltViewModel
-class RepoDetailViewModel @Inject constructor(
+class GitRepositoryDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 

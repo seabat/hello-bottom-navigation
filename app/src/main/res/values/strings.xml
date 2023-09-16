@@ -2,11 +2,11 @@
     <string name="app_name">Hello Bottom Navigation</string>
 
     <!-- トップページ -->
-    <string name="top_tab">Top</string>
-    <string name="top_title">Top Page</string>
+    <string name="top_tab">Git</string>
+    <string name="git_repo_title">Git Repository Page</string>
 
     <!-- リポジトリ詳細ページ -->
-    <string name="repo_detail_title">Repository Detail Page</string>
+    <string name="repo_detail_title">Git Repository Detail Page</string>
 
     <!-- 設定 -->
     <string name="setting_title">設定</string>

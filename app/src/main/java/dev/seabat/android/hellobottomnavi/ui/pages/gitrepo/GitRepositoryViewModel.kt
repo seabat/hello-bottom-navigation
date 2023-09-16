@@ -1,4 +1,4 @@
-package dev.seabat.android.hellobottomnavi.ui.pages.top
+package dev.seabat.android.hellobottomnavi.ui.pages.gitrepo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TopViewModel @Inject constructor(
+class GitRepositoryViewModel @Inject constructor(
     private val githubUseCase: GithubUseCaseContract,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {

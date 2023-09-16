@@ -1,4 +1,4 @@
-package dev.seabat.android.hellobottomnavi.ui.pages.repodetail
+package dev.seabat.android.hellobottomnavi.ui.pages.girepodetail
 
 import android.os.Bundle
 import android.view.View
@@ -10,21 +10,21 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.seabat.android.hellobottomnavi.R
-import dev.seabat.android.hellobottomnavi.databinding.PageRepoDetailBinding
+import dev.seabat.android.hellobottomnavi.databinding.PageGitRepositoryDetailBinding
 
 @AndroidEntryPoint
-class RepoDetailFragment : Fragment(R.layout.page_repo_detail) {
+class GitRepositoryDetailFragment : Fragment(R.layout.page_git_repository_detail) {
     companion object {
-        val TAG: String = RepoDetailFragment::class.java.simpleName
+        val TAG: String = GitRepositoryDetailFragment::class.java.simpleName
     }
 
-    private var binding: PageRepoDetailBinding? = null
-    private val viewModel: RepoDetailViewModel by viewModels()
-    val args: RepoDetailFragmentArgs by navArgs()
+    private var binding: PageGitRepositoryDetailBinding? = null
+    private val viewModel: GitRepositoryDetailViewModel by viewModels()
+    val args: GitRepositoryDetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = PageRepoDetailBinding.bind(view)
+        binding = PageGitRepositoryDetailBinding.bind(view)
         initView()
         initToolBar()
         initObserver()

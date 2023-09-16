@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_top"
+        android:id="@+id/nav_git_repo"
         android:icon="@drawable/github_mark"
         android:title="@string/top_tab" />
 
