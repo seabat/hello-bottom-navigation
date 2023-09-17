@@ -2,40 +2,49 @@
 
 BottomNavigationView と Jetpack Navigation の連携でタブを切り替える。
 
+## Technology stack
 
-## 構成
+### Architecture
 
 * MVVM アーキテクチャパターン  
-  ViewModel + LiveData + ビューバインディング
+  <img src="docs/MVVM.png" width="600">
 
-* [Android 推奨のアーキテクチャ](https://developer.android.com/jetpack/guide?hl=ja) に準拠  
-    * app モジュール: UI Layer
-    * domain モジュール: Domain Layer
-    * data モジュール: Data Layer
+* [Android 推奨のアーキテクチャ](https://developer.android.com/jetpack/guide?hl=ja) に準拠
+  * app モジュール: UI Layer
+  * domain モジュール: Domain Layer
+  * data モジュール: Data Layer
 
-* [クリーンアーキテクチャ](https://www.amazon.co.jp/exec/obidos/ASIN/4048930656/maple036-22/) に準拠  
-    * app モジュール: Presenters
-    * domain モジュール: Use Case 、 Entity
-    * data モジュール: Controllers 、 Gateways
+* [クリーンアーキテクチャ](https://www.amazon.co.jp/exec/obidos/ASIN/4048930656/maple036-22/) に準拠
+  * app モジュール: Presenters
+  * domain モジュール: Use Case 、 Entity
+  * data モジュール: Controllers 、 Gateways
 
+### Android teck stack
 
-## Dependencies
+* MVVM  
+  ViewModel + LiveData + ビューバインディング  
+* フッターメニュー  
+  BottomNavigtionView  
+* ルーティング  
+  [Jepack Navigation](https://developer.android.com/guide/navigation?hl=ja)
+
+### Dependencies
 
 * 通信ライブラリ  
   [Retrofit](https://square.github.io/retrofit/)
 
 * DI(依存性の注入)ライブラリ  
-  [Hilt](https://dagger.dev/hilt/) 
-  
+  [Hilt](https://dagger.dev/hilt/)
+
 * JSON <=> String 変換ライブラリ  
   [Moshi](https://github.com/square/moshi/tree/master)
 
 * イメージロードライブラリ  
-  [Glide](https://github.com/bumptech/glide)  
+  [Glide](https://github.com/bumptech/glide)
 
 * [Secrets Gradle プラグイン](https://developers.google.com/maps/documentation/android-sdk/secrets-gradle-plugin?hl=ja)
 
-## その他採用技術
+### その他 teck stack
 
 * [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
 
@@ -48,16 +57,18 @@ BottomNavigationView と Jetpack Navigation の連携でタブを切り替える
 <img src="images/qiita_list.png" width="200">　<img src="images/qiita_detail.png" width="200">　<img src="images/qiita_search.png" width="200">
 
 
-## Navigation 設計
+##  設計
 
-<img src="docs/navigation.png" width="400">
+### Navigation
+
+<img src="docs/navigation.png" width="600">
 
 
 ## 使い方
 
 1. git clone で本プロジェクトをダウンロード
 2. Android Studio で本プロジェクトを開く  
-    `Android Studio Flamingo | 2022.2.1 Patch 2` を推奨
+   `Android Studio Flamingo | 2022.2.1 Patch 2` を推奨
 3. [Qiita](https://qiita.com/) にログインしてトークンを取得し、local.properties にトークンを設定
     ```
     QIITA_TOKEN=XXXXX2082a357YYYYYa165a88c5d194cb7dZZZZZ
