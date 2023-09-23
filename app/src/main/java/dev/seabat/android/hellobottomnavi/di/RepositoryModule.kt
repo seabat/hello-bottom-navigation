@@ -1,6 +1,5 @@
 package dev.seabat.android.hellobottomnavi.di
 
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,38 +10,35 @@ import dev.seabat.android.hellobottomnavi.data.repository.GithubRepository
 import dev.seabat.android.hellobottomnavi.data.repository.QiitaArticlesRepository
 import dev.seabat.android.hellobottomnavi.domain.repository.GithubRepositoryContract
 import dev.seabat.android.hellobottomnavi.domain.repository.QiitaArticlesRepositoryContract
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RepositoryModuleBinder {
-    @Binds
-    @Singleton
-    abstract fun bindGithubRepositoryContract(
-        gitHubRepository: GithubRepository
-    ): GithubRepositoryContract
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class GithubRepositoryQualifier
 
-    @Binds
-    @Singleton
-    abstract fun provideQiitaArticlesRepositoryContract(
-        qiitaArticlesRepository: QiitaArticlesRepository
-    ): QiitaArticlesRepositoryContract
-}
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class QiitaArticlesRepositoryQualifier
 
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModuleProvider {
+    @GithubRepositoryQualifier
     @Provides
+    @Singleton
     fun provideGithubRepository(
         endpoint: GithubApiService
-    ): GithubRepository {
+    ): GithubRepositoryContract {
         return GithubRepository(endpoint)
     }
 
+    @QiitaArticlesRepositoryQualifier
     @Provides
+    @Singleton
     fun provideQiitaArticlesRepository(
         endpoint: QiitaApiService
-    ): QiitaArticlesRepository {
+    ): QiitaArticlesRepositoryContract {
         return QiitaArticlesRepository(endpoint)
     }
 }

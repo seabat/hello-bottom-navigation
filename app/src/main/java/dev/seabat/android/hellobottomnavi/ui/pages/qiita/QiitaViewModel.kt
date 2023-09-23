@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.seabat.android.hellobottomnavi.ErrorStringConverter
+import dev.seabat.android.hellobottomnavi.di.FetchQiitaArticlesUseCaseQualifier
 import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCaseContract
@@ -18,6 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class QiitaViewModel @Inject constructor(
+    @FetchQiitaArticlesUseCaseQualifier
     private val fetchQiitaArticlesUseCase: FetchQiitaArticlesUseCaseContract,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {

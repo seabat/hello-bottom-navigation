@@ -12,7 +12,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class GithubRepository(private val endpoint: GithubApiService) : GithubRepositoryContract {
+class GithubRepository (
+    private val endpoint: GithubApiService
+) : GithubRepositoryContract {
 
     override suspend fun fetchRepos(query: String?): RepositoryListEntity? {
         //NOTE: 同期方式の場合はメインスレッド以外で通信する必要あり

@@ -1,6 +1,5 @@
 package dev.seabat.android.hellobottomnavi.di
 
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,39 +10,32 @@ import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCa
 import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCaseContract
 import dev.seabat.android.hellobottomnavi.domain.usecase.GithubUseCase
 import dev.seabat.android.hellobottomnavi.domain.usecase.GithubUseCaseContract
-import javax.inject.Singleton
+import javax.inject.Qualifier
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class UseCaseModuleBinder {
-    @Binds
-    @Singleton
-    abstract fun bindGithubUseCaseContract(
-        githubUseCase: GithubUseCase
-    ): GithubUseCaseContract
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class GithubUseCaseQualifier
 
-    @Binds
-    @Singleton
-    abstract fun bindFetchQiitaArticlesUseCaseContract(
-        fetchQiitaArticlesUseCase: FetchQiitaArticlesUseCase
-    ): FetchQiitaArticlesUseCaseContract
-}
-
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class FetchQiitaArticlesUseCaseQualifier
 
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModuleProvider {
+    @GithubUseCaseQualifier
     @Provides
     fun provideGithubUseCase(
-        githubRepository: GithubRepositoryContract
-    ): GithubUseCase {
+        @GithubRepositoryQualifier githubRepository: GithubRepositoryContract
+    ): GithubUseCaseContract {
         return GithubUseCase(githubRepository)
     }
 
+    @FetchQiitaArticlesUseCaseQualifier
     @Provides
     fun provideFetchQiitaArticlesUseCase(
-        qiitaArticlesRepository: QiitaArticlesRepositoryContract
-    ): FetchQiitaArticlesUseCase {
+        @QiitaArticlesRepositoryQualifier qiitaArticlesRepository: QiitaArticlesRepositoryContract
+    ): FetchQiitaArticlesUseCaseContract {
         return FetchQiitaArticlesUseCase(qiitaArticlesRepository)
     }
 }

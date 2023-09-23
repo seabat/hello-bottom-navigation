@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.seabat.android.hellobottomnavi.ErrorStringConverter
+import dev.seabat.android.hellobottomnavi.di.GithubUseCaseQualifier
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.usecase.GithubUseCaseContract
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GitRepositoryViewModel @Inject constructor(
-    private val githubUseCase: GithubUseCaseContract,
+    @GithubUseCaseQualifier private val githubUseCase: GithubUseCaseContract,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
