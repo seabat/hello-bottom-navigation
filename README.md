@@ -95,6 +95,7 @@ BottomNavigationView と Jetpack Navigation の連携でタブを切り替える
 |[ヘッダーから検索ヒット合計数を取得する](https://github.com/seabat/hello-bottom-navigation/commit/ed79c00be896ceb567e2261660e96ab56e740c59)|
 |[Date を和暦に変換](https://github.com/seabat/hello-bottom-navigation/commit/13d6e88344a60538d79a19fc4214f17b441345ed)|
 |[画面遷移の際に BottomNavigationView を非表示にする](https://github.com/seabat/hello-bottom-navigation/commit/f9838c342df0d022c5d37a31b3b40e2b2c9a603b)|
+|[Hilt モジュールの見直し](https://github.com/seabat/hello-bottom-navigation/commit/60c2a2f6f6588c8cd13aa665813d477a5bc3b993)|
 
 
 ## トラブル解消
