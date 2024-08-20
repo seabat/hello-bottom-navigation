@@ -13,4 +13,5 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.secrets.gradle) apply false
     alias(libs.plugins.kotlinter) apply false
+    alias(libs.plugins.ksp) apply false
 }

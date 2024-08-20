@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
     id("androidx.navigation.safeargs")
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlinter)
 }
@@ -40,9 +40,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    kapt {
-        correctErrorTypes = true
-    }
 }
 
 dependencies {
@@ -59,7 +56,7 @@ dependencies {
 
     // Hilt
     implementation(libs.com.google.dagger.hilt.android)
-    kapt(libs.com.google.dagger.hilt.compiler)
+    ksp(libs.com.google.dagger.hilt.compiler)
 
     // Glide
     implementation(libs.com.github.bumptech.glide)
