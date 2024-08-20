@@ -1,10 +1,10 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
     id("androidx.navigation.safeargs")
     id("kotlin-kapt")
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlinter)
 }
 
 android {
@@ -26,7 +26,7 @@ android {
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

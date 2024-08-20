@@ -26,12 +26,12 @@ object GithubExceptionConverter {
                 .build()
             val jsonAdapter: JsonAdapter<ErrorResponse> = moshi.adapter(ErrorResponse::class.java)
             jsonAdapter.fromJson(it)
-        } ?: null
+        }
 
         return HelloException.HttpException(
             errType = errorType,
             responseStatus = responseStatusCode,
-            errMessage = errorMessage?.message ?: null
+            errMessage = errorMessage?.message
         )
     }
 }

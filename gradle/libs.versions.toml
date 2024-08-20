@@ -7,13 +7,14 @@ espressoCore = "3.5.1"
 extJnit = "1.1.5"
 glide = "4.15.1"
 hilt = "2.44"
-kotlin = "1.8.0"
+kotlin = "1.8.22"
 junit = "4.13.2"
 material = "1.9.0"
 navigation = "2.5.3"
 retrofit = "2.9.0"
 moshi = "1.15.0"
 secretsGradle = "2.0.1"
+kotlinter = "3.8.0"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -39,3 +40,4 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 secrets-gradle = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsGradle" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }

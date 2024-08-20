@@ -11,9 +11,8 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class QiitaSearchViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+class QiitaSearchViewModel @Inject constructor(private val savedStateHandle: SavedStateHandle) :
+    ViewModel() {
     private val _startDate = MutableLiveData<Date>(Date())
     val startDate: LiveData<Date>
         get() = _startDate
@@ -34,7 +33,7 @@ class QiitaSearchViewModel @Inject constructor(
      * 検索する
      */
     fun search() {
-        //TODO:
+        // TODO:
     }
 
     /**

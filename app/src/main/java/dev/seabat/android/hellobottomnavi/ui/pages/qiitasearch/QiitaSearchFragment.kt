@@ -30,7 +30,9 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
             setOnShowListener { it ->
                 val bottomSheetDialog = (it as? BottomSheetDialog) ?: return@setOnShowListener
                 val bottomSheet =
-                    bottomSheetDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+                    bottomSheetDialog.findViewById<FrameLayout>(
+                        com.google.android.material.R.id.design_bottom_sheet
+                    )
                         ?: return@setOnShowListener
 
                 BottomSheetBehavior.from(bottomSheet).apply {
@@ -42,14 +44,14 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
                 layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
                 bottomSheet.layoutParams = layoutParams
 
-                //WARNING: 以下のコードでは layoutParams が更新されない！
+                // WARNING: 以下のコードでは layoutParams が更新されない！
 //                bottomSheet.layoutParams.apply {
 //                    this.height = WindowManager.LayoutParams.MATCH_PARENT
 //                }
 
                 this@QiitaSearchFragment.view?.let {
                     initView(it)
-                    initObserver(it)
+                    initObserver()
                 }
             }
         }
@@ -75,8 +77,8 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
             it.buttonStartDate.setOnClickListener {
                 DatePickerDialog(
                     requireContext(),
-                    DatePickerDialog.OnDateSetListener() { _, year, month, dayOfMonth ->
-                        viewModel.setStartDate("${year}-${month + 1}-${dayOfMonth}")
+                    DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                        viewModel.setStartDate("$year-${month + 1}-$dayOfMonth")
                     },
                     Calendar.getInstance().get(Calendar.YEAR),
                     Calendar.getInstance().get(Calendar.MONTH),
@@ -91,7 +93,7 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
         }
     }
 
-    private fun initObserver(view: View) {
+    private fun initObserver() {
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             if (it != null) {
                 showSimpleErrorDialog(
@@ -118,7 +120,8 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
 
     private fun goBackWithValue() {
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
-            "searchParam", bundleOf("start" to viewModel.startDate.value)
+            "searchParam",
+            bundleOf("start" to viewModel.startDate.value)
         )
 
         goBack()
@@ -133,7 +136,5 @@ class QiitaSearchFragment : BottomSheetDialogFragment(R.layout.page_qiita_search
      *
      * ref. https://note.com/yasukotelin/n/nb1c877358d4a
      */
-    override fun getTheme(): Int {
-        return R.style.QiitaSearchBottomSheetDialogTheme
-    }
+    override fun getTheme(): Int = R.style.QiitaSearchBottomSheetDialogTheme
 }

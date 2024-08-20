@@ -1,6 +1,5 @@
 package dev.seabat.android.hellobottomnavi.data.repository
 
-import android.text.format.DateUtils
 import dev.seabat.android.hellobottomnavi.data.BuildConfig
 import dev.seabat.android.hellobottomnavi.data.datasource.qiita.QiitaApiService
 import dev.seabat.android.hellobottomnavi.data.datasource.qiita.QiitaExceptionConverter
@@ -9,17 +8,16 @@ import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleEntity
 import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.repository.QiitaArticlesRepositoryContract
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.Locale
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class QiitaArticlesRepository(
-    private val endpoint: QiitaApiService
-) : QiitaArticlesRepositoryContract {
+class QiitaArticlesRepository(private val endpoint: QiitaApiService) :
+    QiitaArticlesRepositoryContract {
     override suspend fun fetchItems(query: String?): QiitaArticleListEntity? {
-        //NOTE: 同期方式の場合はメインスレッド以外で通信する必要あり
+        // NOTE: 同期方式の場合はメインスレッド以外で通信する必要あり
         return withContext(Dispatchers.IO) {
             val response = try {
                 // 同期方式で HTTP 通信を行う
@@ -37,7 +35,7 @@ class QiitaArticlesRepository(
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 val totalCount = response.headers().get("Total-Count")
-                val entityList = convertToEntity(responseBody, totalCount?.toInt() ?: null)
+                val entityList = convertToEntity(responseBody, totalCount?.toInt())
                 entityList
             } else {
                 val exception = QiitaExceptionConverter.convertTo(
@@ -52,21 +50,19 @@ class QiitaArticlesRepository(
     private fun convertToEntity(
         articles: Array<QiitaArticle>?,
         totalCount: Int?
-    ): QiitaArticleListEntity? {
-        return articles?.let { nonNullArticles ->
-            QiitaArticleListEntity(
-                nonNullArticles.map {
-                    QiitaArticleEntity(
-                        totalCount = totalCount,
-                        createdAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.JAPAN).parse(
-                            it.createdAt
-                        ),
-                        // NOTE: LocalDateTime#parse は Android O 以降で使用可能
-                        title = it.title,
-                        url = it.url,
-                    )
-                } as ArrayList<QiitaArticleEntity>
-            )
-        } ?: null
+    ): QiitaArticleListEntity? = articles?.let { nonNullArticles ->
+        QiitaArticleListEntity(
+            nonNullArticles.map {
+                QiitaArticleEntity(
+                    totalCount = totalCount,
+                    createdAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.JAPAN).parse(
+                        it.createdAt
+                    )!!,
+                    // NOTE: LocalDateTime#parse は Android O 以降で使用可能
+                    title = it.title,
+                    url = it.url,
+                )
+            } as ArrayList<QiitaArticleEntity>
+        )
     }
 }

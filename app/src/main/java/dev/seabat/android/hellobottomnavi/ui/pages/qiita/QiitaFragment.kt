@@ -1,6 +1,5 @@
 package dev.seabat.android.hellobottomnavi.ui.pages.qiita
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,8 +7,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,9 +15,7 @@ import dev.seabat.android.hellobottomnavi.databinding.PageQiitaBinding
 import dev.seabat.android.hellobottomnavi.ui.dialog.showSimpleErrorDialog
 import dev.seabat.android.hellobottomnavi.utils.convertToJapaneseCalender
 import dev.seabat.android.hellobottomnavi.utils.getDateFromBundle
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 @AndroidEntryPoint
 class QiitaFragment : Fragment(R.layout.page_qiita) {
@@ -50,7 +45,7 @@ class QiitaFragment : Fragment(R.layout.page_qiita) {
     }
 
     private fun initToolBar() {
-        //NOT: タブ画面には「戻る」ボタンが要らないので以下をコメントアウトする
+        // NOT: タブ画面には「戻る」ボタンが要らないので以下をコメントアウトする
 //        // 戻るボタン
 //        this.findNavController().let {
 //            val appBarConfig = AppBarConfiguration(it.graph)
@@ -79,11 +74,11 @@ class QiitaFragment : Fragment(R.layout.page_qiita) {
 
     private fun initObserver() {
         viewModel.articles.observe(viewLifecycleOwner) {
-            (binding?.recyclerview?.adapter as QiitaArticleListAdapter)?.updateArticleList(it)
+            (binding?.recyclerview?.adapter as QiitaArticleListAdapter).updateArticleList(it)
             if (it.size > 0 && it[0].totalCount != null) {
                 Toast.makeText(
                     requireActivity(),
-                    "${it[0].totalCount.toString()}件ヒットしました。",
+                    "${it[0].totalCount}件ヒットしました。",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -118,11 +113,14 @@ class QiitaFragment : Fragment(R.layout.page_qiita) {
 
         // 検索日でタイトルを更新
         viewModel.searchDate.observe(viewLifecycleOwner) {
-            binding?.toolbar?.title = getString(R.string.qiita_title_posted_date) + convertToJapaneseCalender(it) + "〜"
+            binding?.toolbar?.title =
+                getString(R.string.qiita_title_posted_date) + convertToJapaneseCalender(it) + "〜"
         }
 
         // 検索画面から検索日を受け取る
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>("searchParam")
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Bundle>(
+            "searchParam"
+        )
             ?.observe(viewLifecycleOwner) {
                 viewModel.loadQiitaArticles(getDateFromBundle(it, "start"))
             }

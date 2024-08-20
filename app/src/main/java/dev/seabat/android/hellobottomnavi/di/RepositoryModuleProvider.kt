@@ -29,17 +29,12 @@ object RepositoryModuleProvider {
     @Singleton
     fun provideGithubRepository(
         endpoint: GithubApiService
-    ): GithubRepositoryContract {
-        return GithubRepository(endpoint)
-    }
+    ): GithubRepositoryContract = GithubRepository(endpoint)
 
     @QiitaArticlesRepositoryQualifier
     @Provides
     @Singleton
     fun provideQiitaArticlesRepository(
         endpoint: QiitaApiService
-    ): QiitaArticlesRepositoryContract {
-        return QiitaArticlesRepository(endpoint)
-    }
+    ): QiitaArticlesRepositoryContract = QiitaArticlesRepository(endpoint)
 }
-

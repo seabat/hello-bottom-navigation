@@ -9,4 +9,3 @@ interface GithubApiService {
     @GET("search/repositories")
     fun getAllRepo(@Query("q") q: String): Call<GetAllRepoResponse>
 }
-

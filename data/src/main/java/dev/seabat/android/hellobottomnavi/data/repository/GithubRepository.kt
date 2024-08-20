@@ -1,23 +1,21 @@
 package dev.seabat.android.hellobottomnavi.data.repository
 
-import dev.seabat.android.hellobottomnavi.data.datasource.github.GithubExceptionConverter
 import dev.seabat.android.hellobottomnavi.data.datasource.github.GithubApiService
+import dev.seabat.android.hellobottomnavi.data.datasource.github.GithubExceptionConverter
 import dev.seabat.android.hellobottomnavi.data.datasource.github.model.Repository
 import dev.seabat.android.hellobottomnavi.domain.entity.OwnerEntity
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryEntity
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.repository.GithubRepositoryContract
+import java.lang.Exception
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
-class GithubRepository (
-    private val endpoint: GithubApiService
-) : GithubRepositoryContract {
+class GithubRepository(private val endpoint: GithubApiService) : GithubRepositoryContract {
 
     override suspend fun fetchRepos(query: String?): RepositoryListEntity? {
-        //NOTE: 同期方式の場合はメインスレッド以外で通信する必要あり
+        // NOTE: 同期方式の場合はメインスレッド以外で通信する必要あり
         return withContext(Dispatchers.IO) {
             val response = try {
                 // 同期方式で HTTP 通信を行う
@@ -41,20 +39,19 @@ class GithubRepository (
         }
     }
 
-    private fun convertToEntity(repos: List<Repository>?): RepositoryListEntity? {
-        return repos?.let { repos ->
+    private fun convertToEntity(repos: List<Repository>?): RepositoryListEntity? =
+        repos?.let {
             RepositoryListEntity(
-                repos.map {
+                it.map { repo ->
                     RepositoryEntity(
-                        name = it.name,
-                        fullName = it.fullName,
-                        htmlUrl = it.htmlUrl,
-                        description = it.description,
-                        createdAt = it.createdAt,
-                        owner = OwnerEntity(avatarUrl = it.owner.avatarUrl)
+                        name = repo.name,
+                        fullName = repo.fullName,
+                        htmlUrl = repo.htmlUrl,
+                        description = repo.description,
+                        createdAt = repo.createdAt,
+                        owner = OwnerEntity(avatarUrl = repo.owner.avatarUrl)
                     )
                 } as ArrayList<RepositoryEntity>
             )
-        } ?: null
-    }
+        }
 }

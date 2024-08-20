@@ -6,8 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class QiitaDetailViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
-
+class QiitaDetailViewModel @Inject constructor(private val savedStateHandle: SavedStateHandle) :
+    ViewModel() {
 }

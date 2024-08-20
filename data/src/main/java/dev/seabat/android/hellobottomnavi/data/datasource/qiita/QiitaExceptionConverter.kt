@@ -17,9 +17,9 @@ object QiitaExceptionConverter {
     ): HelloException {
         val errorType = when (statusCode) {
             400 -> ErrorType.NETWORK_BAD_REQUEST
-            401 -> ErrorType.NETWORK_UNAUTHORIZED //FIXME: 401 は Response.isSuccessful にならない可能性が高い
-            403 -> ErrorType.NETWORK_FORBIDDEN //FIXME: 401 は Response.isSuccessful にならない可能性が高い
-            404 -> ErrorType.NETWORK_NOT_FOUND //FIXME: 404 は Response.isSuccessful にならない可能性が高い
+            401 -> ErrorType.NETWORK_UNAUTHORIZED // FIXME: 401 は Response.isSuccessful にならない可能性が高い
+            403 -> ErrorType.NETWORK_FORBIDDEN // FIXME: 401 は Response.isSuccessful にならない可能性が高い
+            404 -> ErrorType.NETWORK_NOT_FOUND // FIXME: 404 は Response.isSuccessful にならない可能性が高い
             500 -> ErrorType.NETWORK_INTERNAL_SERVER_ERROR
             else -> ErrorType.NETWORK_UNKNOWN_ERROR
         }

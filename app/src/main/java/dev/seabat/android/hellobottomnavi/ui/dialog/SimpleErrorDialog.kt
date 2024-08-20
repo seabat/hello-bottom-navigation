@@ -32,7 +32,7 @@ fun Activity.showSimpleErrorDialog(
     }
 
     val fragmentTransaction = (this as AppCompatActivity).supportFragmentManager.beginTransaction()
-    (this as AppCompatActivity).supportFragmentManager.setFragmentResultListener(
+    this.supportFragmentManager.setFragmentResultListener(
         requestKey,
         this
     ) { key, bundle ->
@@ -81,7 +81,7 @@ class SimpleErrorDialogFragment : DialogFragment() {
         val message = arguments?.getString(ARG_MESSAGE)
         val positiveButtonText = arguments?.getString(ARG_POSITIVE_BUTTON_TEXT)
         val requestKey = arguments?.getString(ARG_REQUEST_KEY)
-        var requestBundle = arguments?.getBundle(ARG_REQUEST_BUNDLE)
+        val requestBundle = arguments?.getBundle(ARG_REQUEST_BUNDLE)
         val builder = AlertDialog.Builder(requireContext()).apply {
             setCancelable(false)
         }
@@ -97,7 +97,6 @@ class SimpleErrorDialogFragment : DialogFragment() {
                 if (requestKey != null && requestBundle != null) {
                     setFragmentResult(requestKey, requestBundle)
                 }
-
             }
         }
         return builder.create()
