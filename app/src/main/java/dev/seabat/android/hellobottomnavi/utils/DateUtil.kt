@@ -1,6 +1,5 @@
 package dev.seabat.android.hellobottomnavi.utils
 
-import android.app.admin.DevicePolicyResourcesManager
 import android.icu.text.DateFormat
 import android.icu.text.DateFormatSymbols
 import android.icu.util.JapaneseCalendar
@@ -19,11 +18,11 @@ fun convertToJapaneseCalender(date: Date): String {
     return df.format(date)
 }
 
-fun getDateFromBundle(bundle: Bundle, key: String): Date {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        bundle.getSerializable(key, java.util.Date::class.java) ?: Date()
-    } else {
-        @Suppress("DEPRECATION")
-        bundle.getSerializable(key) as? Date ?: Date()
-    }
+fun getDateFromBundle(bundle: Bundle, key: String): Date = if (Build.VERSION.SDK_INT >=
+    Build.VERSION_CODES.TIRAMISU
+) {
+    bundle.getSerializable(key, java.util.Date::class.java) ?: Date()
+} else {
+    @Suppress("DEPRECATION")
+    bundle.getSerializable(key) as? Date ?: Date()
 }

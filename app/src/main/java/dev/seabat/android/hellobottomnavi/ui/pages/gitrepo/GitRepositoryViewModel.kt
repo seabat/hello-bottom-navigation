@@ -11,8 +11,8 @@ import dev.seabat.android.hellobottomnavi.di.GithubUseCaseQualifier
 import dev.seabat.android.hellobottomnavi.domain.entity.RepositoryListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.usecase.GithubUseCaseContract
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class GitRepositoryViewModel @Inject constructor(

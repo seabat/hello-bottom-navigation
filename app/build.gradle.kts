@@ -1,22 +1,22 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
     id("androidx.navigation.safeargs")
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlinter)
 }
 
 android {
     namespace = "dev.seabat.android.hellobottomnavi"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "dev.seabat.android.hellobottomnavi"
         minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0.0"
+        targetSdk = 34
+        versionCode = 2
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,7 +26,7 @@ android {
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -39,9 +39,6 @@ android {
     }
     buildFeatures {
         viewBinding = true
-    }
-    kapt {
-        correctErrorTypes = true
     }
 }
 
@@ -59,7 +56,7 @@ dependencies {
 
     // Hilt
     implementation(libs.com.google.dagger.hilt.android)
-    kapt(libs.com.google.dagger.hilt.compiler)
+    ksp(libs.com.google.dagger.hilt.compiler)
 
     // Glide
     implementation(libs.com.github.bumptech.glide)

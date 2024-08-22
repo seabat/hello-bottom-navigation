@@ -50,7 +50,6 @@ class QiitaDetailFragment : Fragment(R.layout.page_qiita_detail) {
     }
 
     private fun initObserver() {
-
     }
 
     override fun onDestroyView() {

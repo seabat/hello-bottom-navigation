@@ -1,10 +1,5 @@
 package dev.seabat.android.hellobottomnavi.ui.pages.qiita
 
-import android.icu.text.DateFormat
-import android.icu.text.DateFormatSymbols
-import android.icu.util.Calendar
-import android.icu.util.JapaneseCalendar
-import android.icu.text.SimpleDateFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +7,6 @@ import dev.seabat.android.hellobottomnavi.databinding.ListitemQiitaArticleBindin
 import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleEntity
 import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
 import dev.seabat.android.hellobottomnavi.utils.convertToJapaneseCalender
-import java.util.Date
-import java.util.Locale
 
 class QiitaArticleListAdapter(
     private val onListItemClick: (title: String, htmlUrl: String) -> Unit
@@ -31,9 +24,7 @@ class QiitaArticleListAdapter(
         return QiitaArticleHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: QiitaArticleHolder, position: Int) {
         holder.bind(items[position])
@@ -56,5 +47,4 @@ class QiitaArticleListAdapter(
             }
         }
     }
-
 }

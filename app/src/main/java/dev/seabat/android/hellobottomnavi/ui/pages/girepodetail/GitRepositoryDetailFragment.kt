@@ -50,7 +50,6 @@ class GitRepositoryDetailFragment : Fragment(R.layout.page_git_repository_detail
     }
 
     private fun initObserver() {
-
     }
 
     override fun onDestroyView() {

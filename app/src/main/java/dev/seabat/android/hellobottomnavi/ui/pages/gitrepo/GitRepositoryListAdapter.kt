@@ -25,9 +25,7 @@ class GitRepositoryListAdapter(
         return RepositoryHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: RepositoryHolder, position: Int) {
         holder.bind(items[position])

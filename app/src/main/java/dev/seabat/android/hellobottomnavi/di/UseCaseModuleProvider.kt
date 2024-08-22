@@ -27,15 +27,11 @@ object UseCaseModuleProvider {
     @Provides
     fun provideGithubUseCase(
         @GithubRepositoryQualifier githubRepository: GithubRepositoryContract
-    ): GithubUseCaseContract {
-        return GithubUseCase(githubRepository)
-    }
+    ): GithubUseCaseContract = GithubUseCase(githubRepository)
 
     @FetchQiitaArticlesUseCaseQualifier
     @Provides
     fun provideFetchQiitaArticlesUseCase(
         @QiitaArticlesRepositoryQualifier qiitaArticlesRepository: QiitaArticlesRepositoryContract
-    ): FetchQiitaArticlesUseCaseContract {
-        return FetchQiitaArticlesUseCase(qiitaArticlesRepository)
-    }
+    ): FetchQiitaArticlesUseCaseContract = FetchQiitaArticlesUseCase(qiitaArticlesRepository)
 }

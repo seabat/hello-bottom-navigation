@@ -38,7 +38,10 @@ class GitRepositoryFragment : Fragment(R.layout.page_git_repository) {
             layoutManager = LinearLayoutManager(requireContext())
             val decoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
             addItemDecoration(decoration)
-            adapter = GitRepositoryListAdapter(onListItemClick = this@GitRepositoryFragment.onListItemClick)
+            adapter =
+                GitRepositoryListAdapter(
+                    onListItemClick = this@GitRepositoryFragment.onListItemClick
+                )
         }
 
         binding?.search?.setOnCloseListener {
@@ -48,9 +51,7 @@ class GitRepositoryFragment : Fragment(R.layout.page_git_repository) {
         }
 
         binding?.search?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
+            override fun onQueryTextChange(newText: String?): Boolean = false
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.loadRepositories(query)
@@ -63,7 +64,7 @@ class GitRepositoryFragment : Fragment(R.layout.page_git_repository) {
 
     private fun initObserver() {
         viewModel.repositories.observe(viewLifecycleOwner) {
-            (binding?.recyclerview?.adapter as GitRepositoryListAdapter)?.updateRepositoryList(it)
+            (binding?.recyclerview?.adapter as GitRepositoryListAdapter).updateRepositoryList(it)
         }
 
         viewModel.progressVisible.observe(viewLifecycleOwner) {
@@ -113,7 +114,10 @@ class GitRepositoryFragment : Fragment(R.layout.page_git_repository) {
                 }
 
                 R.id.menu_setting -> {
-                    val action = GitRepositoryFragmentDirections.actionToSetting().apply { inVisibleBottomNav = true }
+                    val action = GitRepositoryFragmentDirections.actionToSetting().apply {
+                        inVisibleBottomNav =
+                            true
+                    }
                     findNavController().navigate(action)
                     true
                 }

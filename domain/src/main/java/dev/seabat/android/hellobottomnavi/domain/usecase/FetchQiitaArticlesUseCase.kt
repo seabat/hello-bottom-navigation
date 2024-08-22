@@ -12,7 +12,7 @@ class FetchQiitaArticlesUseCase(
     ): QiitaArticleListEntity? {
         // TODO: val query = "created:>${createdAt}+title:${title}" は
         //       "+" をエンコードすると500 エラーとなってしまうので保留
-        val query = "created:>=${startCreatedAt}"
+        val query = "created:>=$startCreatedAt"
         return qiitaArticlesRepository.fetchItems(query = query)
     }
 }

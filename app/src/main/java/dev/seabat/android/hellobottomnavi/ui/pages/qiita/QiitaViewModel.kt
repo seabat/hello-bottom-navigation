@@ -11,11 +11,11 @@ import dev.seabat.android.hellobottomnavi.di.FetchQiitaArticlesUseCaseQualifier
 import dev.seabat.android.hellobottomnavi.domain.entity.QiitaArticleListEntity
 import dev.seabat.android.hellobottomnavi.domain.exception.HelloException
 import dev.seabat.android.hellobottomnavi.domain.usecase.FetchQiitaArticlesUseCaseContract
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class QiitaViewModel @Inject constructor(
@@ -56,7 +56,7 @@ class QiitaViewModel @Inject constructor(
             }.onSuccess {
                 _articles.value = it
             }.onFailure {
-                //NOTE: コルーチンがキャンセルされたとき(JobCancellationException)はエラーを表示しない
+                // NOTE: コルーチンがキャンセルされたとき(JobCancellationException)はエラーを表示しない
                 (it as? HelloException)?.let { e ->
                     val errorString = ErrorStringConverter.convertTo(e.errType)
                     android.util.Log.d("Hello", errorString)
